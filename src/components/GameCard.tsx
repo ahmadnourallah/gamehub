@@ -1,11 +1,13 @@
 import { mdiConsole } from '@mdi/js';
 import { Platforms } from './Navbar';
 import { PlatformType } from '@/queries/platform';
+import Link from 'next/link';
 import shimmer from '@/utils/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
 
 export default function GameCard({
+    id,
     thumbnail,
     title,
     price,
@@ -13,6 +15,7 @@ export default function GameCard({
     platforms,
     className
 }: {
+    id: number;
     thumbnail: string;
     title: string;
     price: number;
@@ -24,7 +27,7 @@ export default function GameCard({
         <div
             className={`flex h-[370px] flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
         >
-            <div>
+            <Link href={`store/games/${id}`}>
                 <Image
                     className="h-50 w-full rounded-t-2xl"
                     placeholder={`data:image/svg+xml;base64,${shimmer()}`}
@@ -38,7 +41,7 @@ export default function GameCard({
                     height={0}
                     sizes="100%"
                 />
-            </div>
+            </Link>
 
             <div className="flex flex-col gap-3 p-4">
                 <div className="flex justify-between text-[rgb(24,176,171)]">
@@ -60,9 +63,11 @@ export default function GameCard({
                     ))}
                 </div>
 
-                <h3 className="text-2xl font-bold overflow-ellipsis">
-                    {title}
-                </h3>
+                <Link href={`store/games/${id}`}>
+                    <h3 className="text-2xl font-bold overflow-ellipsis">
+                        {title}
+                    </h3>
+                </Link>
             </div>
         </div>
     );
