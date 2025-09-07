@@ -1,3 +1,4 @@
+'use client';
 import {
     mdiFire,
     mdiBoxingGlove,
@@ -13,9 +14,11 @@ import {
     mdiSonyPlaystation,
     mdiNintendoSwitch,
     mdiAppleIos,
-    mdiAndroid
+    mdiAndroid,
+    mdiMenu
 } from '@mdi/js';
-import { ReactNode } from 'react';
+import { motion } from 'motion/react';
+import { ReactNode, useState } from 'react';
 import Icon from '@mdi/react';
 
 export const Platforms = {
@@ -58,41 +61,59 @@ function NavItem({
 }
 
 export default function Navbar() {
+    const [isActive, setIsActive] = useState(false);
+
     return (
-        <nav className="flex flex-col gap-8">
-            <div>
-                <ul>
-                    <NavItem link="#" icon={mdiFire}>
-                        Latest Games
-                    </NavItem>
-                </ul>
-            </div>
+        <>
+            <button
+                onClick={() => setIsActive(!isActive)}
+                className="fixed right-4 bottom-4 z-100 rounded-full bg-white p-1.5 text-2xl sm:hidden"
+            >
+                <Icon path={mdiMenu} size={1.3} color="#000" />
+            </button>
 
-            <div>
-                <div className="mb-2 text-4xl font-bold">Genres</div>
-                <ul className="flex flex-col gap-2">
-                    {Object.entries(Genres).map(
-                        ([genre, icon], index: number) => (
-                            <NavItem key={index} link="#" icon={icon}>
-                                {genre}
-                            </NavItem>
-                        )
-                    )}
-                </ul>
-            </div>
+            <motion.nav
+                transition={{ bounce: 0 }}
+                animate={{
+                    x: isActive ? 0 : -300,
+                    visibility: isActive ? 'visible' : 'hidden'
+                }}
+                className={`bg-background absolute top-0 left-0 z-100 h-full flex-col gap-8 border-r-1 border-r-[#202020] p-4 sm:!visible sm:static sm:flex sm:h-auto sm:!transform-none sm:border-none sm:p-0`}
+            >
+                <div>
+                    <ul>
+                        <NavItem link="#" icon={mdiFire}>
+                            Latest Games
+                        </NavItem>
+                    </ul>
+                </div>
 
-            <div>
-                <div className="mb-2 text-4xl font-bold">Platforms</div>
-                <ul className="flex flex-col gap-2">
-                    {Object.entries(Platforms).map(
-                        ([platform, icon], index: number) => (
-                            <NavItem key={index} link="#" icon={icon}>
-                                {platform}
-                            </NavItem>
-                        )
-                    )}
-                </ul>
-            </div>
-        </nav>
+                <div>
+                    <div className="mb-2 text-4xl font-bold">Genres</div>
+                    <ul className="flex flex-col gap-2">
+                        {Object.entries(Genres).map(
+                            ([genre, icon], index: number) => (
+                                <NavItem key={index} link="#" icon={icon}>
+                                    {genre}
+                                </NavItem>
+                            )
+                        )}
+                    </ul>
+                </div>
+
+                <div>
+                    <div className="mb-2 text-4xl font-bold">Platforms</div>
+                    <ul className="flex flex-col gap-2">
+                        {Object.entries(Platforms).map(
+                            ([platform, icon], index: number) => (
+                                <NavItem key={index} link="#" icon={icon}>
+                                    {platform}
+                                </NavItem>
+                            )
+                        )}
+                    </ul>
+                </div>
+            </motion.nav>
+        </>
     );
 }
