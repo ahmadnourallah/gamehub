@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
-:root {
-    --background: #0f1011;
+@theme {
+    --color-background: #0f1011;
 }
 
 button {
@@ -9,7 +9,7 @@ button {
 }
 
 body {
-    background: var(--background);
+    background: var(--color-background);
     color: #ffffff;
 }
 
