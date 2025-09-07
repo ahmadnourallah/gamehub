@@ -24,9 +24,15 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={sen.className}>
+            <head>
+                <link rel="icon" href="/favicon.png" sizes="any" />
+            </head>
             <body>
                 <header className="relative z-10 container mx-auto flex items-center justify-between gap-4 p-4">
-                    <Link href="/" className="scaleOnHover flex cursor-pointer items-center gap-2">
+                    <Link
+                        href="/"
+                        className="scaleOnHover flex cursor-pointer items-center gap-2"
+                    >
                         <Image src="/logo.png" width={45} height={45} alt="" />
                         <span className="hidden text-3xl font-medium sm:block">
                             Game Store
