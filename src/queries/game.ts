@@ -26,3 +26,13 @@ export async function getGames(): Promise<GameType[]> {
 
     return data.data.games;
 }
+
+export async function getGame(id: number): Promise<GameType> {
+    const response = await fetch(`${process.env.API}/games/${id}`);
+
+    if (!response.ok) throw new Error("Server isn't responding!");
+
+    const data = await response.json();
+
+    return data.data.game;
+}
