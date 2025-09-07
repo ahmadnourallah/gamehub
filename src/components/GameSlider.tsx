@@ -27,6 +27,7 @@ export default function GameSlider({ games }: { games: GameType[] }) {
                     {games.map((game, i) => (
                         <div key={i} className="embla__slide min-w-0">
                             <GameCard
+                                id={game.id}
                                 thumbnail={game.images[0]}
                                 title={game.title}
                                 price={game.price}
