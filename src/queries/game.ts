@@ -17,7 +17,7 @@ export interface GameType {
 
 export async function getGames(): Promise<GameType[]> {
     const response = await fetch(
-        `${process.env.API}/games?orderby=date&order=desc`
+        `${process.env.NEXT_PUBLIC_API}/games?orderby=date&order=desc`
     );
 
     if (!response.ok) throw new Error("Server isn't responding!");
@@ -28,7 +28,7 @@ export async function getGames(): Promise<GameType[]> {
 }
 
 export async function getGame(id: number): Promise<GameType> {
-    const response = await fetch(`${process.env.API}/games/${id}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/games/${id}`);
 
     if (!response.ok) throw new Error("Server isn't responding!");
 
