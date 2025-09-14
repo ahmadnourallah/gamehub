@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { Sen } from 'next/font/google';
 import { mdiLogin } from '@mdi/js';
+import localFont from 'next/font/local';
 import Link from 'next/link';
 import Icon from '@mdi/react';
 import Image from 'next/image';
@@ -8,8 +8,19 @@ import SearchBar from '@/components/SearchBar';
 import Cart from '@/components/Cart';
 import './globals.css';
 
-const sen = Sen({
-    subsets: ['latin']
+const GTWalsheimPro = localFont({
+    src: [
+        {
+            path: '../../public/GTWalsheimProRegular.woff2',
+            weight: '400',
+            style: 'normal'
+        },
+        {
+            path: '../../public/GTWalsheimProBold.woff2',
+            weight: '900',
+            style: 'normal'
+        }
+    ]
 });
 
 export const metadata: Metadata = {
@@ -23,7 +34,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={sen.className}>
+        <html lang="en" className={GTWalsheimPro.className}>
             <head>
                 <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
