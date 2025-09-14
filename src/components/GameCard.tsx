@@ -33,7 +33,7 @@ export default function GameCard({
                     placeholder={`data:image/svg+xml;base64,${shimmer()}`}
                     src={
                         thumbnail
-                            ? `http://localhost:3000/${thumbnail}`
+                            ? `${process.env.NEXT_PUBLIC_API}/${thumbnail}`
                             : '/default.jpg'
                     }
                     alt=""
