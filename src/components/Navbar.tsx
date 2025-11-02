@@ -82,7 +82,7 @@ export default function Navbar() {
             >
                 <div>
                     <ul>
-                        <NavItem link="#" icon={mdiFire}>
+                        <NavItem link="/store" icon={mdiFire}>
                             Latest Games
                         </NavItem>
                     </ul>
@@ -93,7 +93,11 @@ export default function Navbar() {
                     <ul className="flex flex-col gap-2">
                         {Object.entries(Genres).map(
                             ([genre, icon], index: number) => (
-                                <NavItem key={index} link="#" icon={icon}>
+                                <NavItem
+                                    key={index}
+                                    link={`/store/genres/${genre}`}
+                                    icon={icon}
+                                >
                                     {genre}
                                 </NavItem>
                             )
@@ -106,7 +110,11 @@ export default function Navbar() {
                     <ul className="flex flex-col gap-2">
                         {Object.entries(Platforms).map(
                             ([platform, icon], index: number) => (
-                                <NavItem key={index} link="#" icon={icon}>
+                                <NavItem
+                                    key={index}
+                                    link={`/store/platforms/${platform}`}
+                                    icon={icon}
+                                >
                                     {platform}
                                 </NavItem>
                             )
