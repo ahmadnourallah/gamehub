@@ -27,7 +27,7 @@ export default function GameCard({
         <div
             className={`flex h-[370px] flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
         >
-            <Link href={`store/games/${id}`}>
+            <Link href={`/store/games/${id}`}>
                 <Image
                     className="h-50 w-full rounded-t-2xl"
                     placeholder={`data:image/svg+xml;base64,${shimmer()}`}
@@ -63,7 +63,7 @@ export default function GameCard({
                     ))}
                 </div>
 
-                <Link href={`store/games/${id}`}>
+                <Link href={`/store/games/${id}`}>
                     <h3 className="text-2xl font-bold overflow-ellipsis">
                         {title}
                     </h3>
