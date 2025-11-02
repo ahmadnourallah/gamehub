@@ -15,9 +15,15 @@ export interface GameType {
     publishers: PublisherType[];
 }
 
-export async function getGames(): Promise<GameType[]> {
+export async function getGames(
+    start: number = 0,
+    end: number = 10,
+    search: string = '',
+    orderBy: 'date' | 'title' = 'date',
+    order: 'asc' | 'desc' = 'asc'
+): Promise<GameType[]> {
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/games?orderby=date&order=desc`
+        `${process.env.NEXT_PUBLIC_API}/games?start=${start}&end=${end}&search=${search}&orderby=${orderBy}&order=${order}`
     );
 
     if (!response.ok) throw new Error("Server isn't responding!");
