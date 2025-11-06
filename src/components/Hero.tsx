@@ -33,8 +33,8 @@ export default function Hero() {
                                     Game Store
                                 </h1>
                                 <p className="m-2 text-xl">
-                                    All the games you're looking for in one
-                                    place!
+                                    All the games you&apos;re looking for in
+                                    one place!
                                 </p>
                             </div>
 

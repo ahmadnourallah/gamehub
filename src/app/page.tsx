@@ -19,7 +19,8 @@ export default async function Home() {
                         Latest Games
                     </h1>
                     <p className="m-4 text-lg">
-                        A select of the latest and best games you'll ever play
+                        A select of the latest and best games you&apos;ll ever
+                        play
                     </p>
                 </div>
 
