@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import { mdiLogin } from '@mdi/js';
+import { Toaster } from 'react-hot-toast';
 import QueryProvider from '@/components/QueryProvider';
 import localFont from 'next/font/local';
 import Link from 'next/link';
-import Icon from '@mdi/react';
 import Image from 'next/image';
 import SearchBar from '@/components/SearchBar';
-import Cart from '@/components/Cart';
+import Control from '@/components/Control';
 import './globals.css';
 
 const GTWalsheimPro = localFont({
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
     description: "All the games you're looking for in one place"
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children
 }: Readonly<{
     children: React.ReactNode;
@@ -41,6 +40,7 @@ export default function RootLayout({
                     <link rel="icon" href="/favicon.ico" sizes="any" />
                 </head>
                 <body>
+                    <Toaster position="bottom-right" />
                     <header className="relative z-10 container mx-auto flex items-center justify-between gap-4 p-4">
                         <Link
                             href="/"
@@ -59,22 +59,11 @@ export default function RootLayout({
 
                         <SearchBar />
 
-                        <div className="flex items-center">
-                            <a
-                                href="#"
-                                data-tooltip="Login"
-                                className="tooltip relative mr-2 border-r-2 border-r-white pr-2"
-                            >
-                                <Icon
-                                    className="scaleOnHover h-5 w-5 sm:h-6 sm:w-6"
-                                    path={mdiLogin}
-                                />
-                            </a>
-
-                            <Cart />
-                        </div>
+                        <Control />
                     </header>
-                    {children}
+                    <div className="flex flex-col items-center justify-center">
+                        {children}
+                    </div>
                 </body>
             </html>
         </QueryProvider>
