@@ -1,9 +1,15 @@
 import Button from '@/components/Button';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+    title: 'Page not found',
+    description: "The page you're looking for is not found."
+};
 
 export default function NotFound() {
     return (
-        <div className="flex flex-col justify-center items-center mt-12">
+        <div className="mt-12 flex flex-col items-center justify-center">
             <h1 className="text-center text-4xl">Not Found</h1>
             <div className="mt-12 flex flex-col items-center rounded-lg bg-[#202020] p-8">
                 <p className="text-xl">Could not find requested resource</p>
