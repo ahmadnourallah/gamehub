@@ -1,4 +1,5 @@
 import { getPlatformGames } from '@/queries/platform';
+import { notFound } from 'next/navigation';
 import GameList from '@/components/GameList';
 
 export default async function PlatformGames({
@@ -7,7 +8,11 @@ export default async function PlatformGames({
     params: Promise<{ name: string }>;
 }) {
     const { name } = await params;
-    const games = await getPlatformGames(name);
+    const response = await getPlatformGames(name);
 
-    return <GameList games={games} />;
+    if (response.status === 'fail') notFound();
+    else {
+        const games = response.data.games;
+        return <GameList games={games} />;
+    }
 }

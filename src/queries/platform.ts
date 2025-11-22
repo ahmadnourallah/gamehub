@@ -1,4 +1,4 @@
-import type { GameType } from './game';
+import type { GameType, ResponseType } from './game';
 
 export interface PlatformType {
     id: number;
@@ -13,14 +13,13 @@ export async function getPlatformGames(
     search: string = '',
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'asc'
-): Promise<GameType[]> {
+): Promise<ResponseType<'games', GameType[]>> {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_API}/platforms/${platformName}/games?start=${start}&end=${end}&search=${search}&orderby=${orderBy}&order=${order}`
     );
 
-    if (!response.ok) throw new Error("Server isn't responding!");
+    if (!response.ok && response.status !== 404)
+        throw new Error("Server isn't responding!");
 
-    const data = await response.json();
-
-    return data.data.games;
+    return await response.json();
 }

@@ -1,4 +1,5 @@
 import { getGenreGames } from '@/queries/genre';
+import { notFound } from 'next/navigation';
 import GameList from '@/components/GameList';
 
 export default async function GenreGames({
@@ -7,7 +8,11 @@ export default async function GenreGames({
     params: Promise<{ name: string }>;
 }) {
     const { name } = await params;
-    const games = await getGenreGames(name);
+    const response = await getGenreGames(name);
 
-    return <GameList games={games} />;
+    if (response.status === 'fail') notFound();
+    else {
+        const games = response.data.games;
+        return <GameList games={games} />;
+    }
 }
