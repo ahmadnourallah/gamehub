@@ -1,5 +1,5 @@
 import { mdiConsole } from '@mdi/js';
-import { Platforms } from './Navbar';
+import { Platforms } from '@/utils/icons';
 import { PlatformType } from '@/queries/platform';
 import Link from 'next/link';
 import shimmer from '@/utils/shimmer';

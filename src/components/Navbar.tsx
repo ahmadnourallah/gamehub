@@ -1,45 +1,9 @@
 'use client';
-import {
-    mdiFire,
-    mdiBoxingGlove,
-    mdiMicrosoftWindows,
-    mdiMicrosoftXbox,
-    mdiChessRook,
-    mdiSwordCross,
-    mdiPistol,
-    mdiPyramid,
-    mdiPuzzle,
-    mdiFlagCheckered,
-    mdiFootball,
-    mdiSonyPlaystation,
-    mdiNintendoSwitch,
-    mdiAppleIos,
-    mdiAndroid,
-    mdiMenu
-} from '@mdi/js';
+import { mdiFire, mdiMenu } from '@mdi/js';
+import { Platforms, Genres } from '@/utils/icons';
 import { motion } from 'motion/react';
 import { ReactNode, useState } from 'react';
 import Icon from '@mdi/react';
-
-export const Platforms = {
-    PC: mdiMicrosoftWindows,
-    PlayStation: mdiSonyPlaystation,
-    Xbox: mdiMicrosoftXbox,
-    Nintendo: mdiNintendoSwitch,
-    iOS: mdiAppleIos,
-    Android: mdiAndroid
-};
-
-export const Genres = {
-    Action: mdiBoxingGlove,
-    Strategy: mdiChessRook,
-    RPG: mdiSwordCross,
-    Shooter: mdiPistol,
-    Adventure: mdiPyramid,
-    Puzzle: mdiPuzzle,
-    Racing: mdiFlagCheckered,
-    Sports: mdiFootball
-};
 
 function NavItem({
     children,
