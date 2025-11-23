@@ -48,7 +48,7 @@ export default function Navbar() {
                     x: isActive ? 0 : -300,
                     visibility: isActive ? 'visible' : 'hidden'
                 }}
-                className={`bg-background absolute top-0 left-0 z-100 h-full flex-col gap-8 border-r-1 border-r-[#202020] p-4 sm:!visible sm:static sm:flex sm:h-auto sm:!transform-none sm:border-none sm:p-0`}
+                className={`bg-background absolute top-0 left-0 z-100 flex h-full flex-col gap-8 border-r-1 border-r-[#202020] p-4 sm:!visible sm:static sm:h-auto sm:!transform-none sm:border-none sm:p-0`}
             >
                 <div>
                     <ul>
