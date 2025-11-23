@@ -28,8 +28,10 @@ body {
     content: attr(data-tooltip);
     position: absolute;
     top: 130%;
-    left: -50%;
-    right: -50%;
+    left: 50%;
+    right: 50%;
+    width: fit-content;
+    transform: translate(-50%);
     border-radius: 5px;
     padding: 2px 10px;
     background: #fff;
