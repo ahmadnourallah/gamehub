@@ -25,11 +25,11 @@ export default function GameCard({
 }) {
     return (
         <div
-            className={`flex h-[370px] flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
+            className={`flex max-w-[600px] flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
         >
             <Link href={`/store/games/${id}`}>
                 <Image
-                    className="h-50 w-full rounded-t-2xl"
+                    className="h-auto w-full rounded-t-2xl"
                     placeholder={`data:image/svg+xml;base64,${shimmer()}`}
                     src={
                         thumbnail
@@ -37,9 +37,9 @@ export default function GameCard({
                             : '/default.jpg'
                     }
                     alt=""
-                    width={0}
-                    height={0}
-                    sizes="100%"
+                    width={316}
+                    height={178}
+                    sizes="100vw"
                 />
             </Link>
 
@@ -64,7 +64,10 @@ export default function GameCard({
                 </div>
 
                 <Link href={`/store/games/${id}`}>
-                    <h3 className="text-2xl font-bold overflow-ellipsis">
+                    <h3
+                        title={title}
+                        className="line-clamp-2 text-2xl font-bold overflow-ellipsis"
+                    >
                         {title}
                     </h3>
                 </Link>
