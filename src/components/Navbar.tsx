@@ -3,7 +3,9 @@ import { mdiFire, mdiMenu } from '@mdi/js';
 import { Platforms, Genres } from '@/utils/icons';
 import { motion } from 'motion/react';
 import { ReactNode, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Icon from '@mdi/react';
+import Link from 'next/link';
 
 function NavItem({
     children,
@@ -14,13 +16,17 @@ function NavItem({
     icon: string;
     link: string;
 }) {
+    const pathname = usePathname();
+
     return (
-        <a href={link} className="group flex items-center gap-3">
-            <div className="rounded-md bg-[#202020] p-1.5 text-white transition-colors duration-400 group-hover:bg-white group-hover:text-black">
+        <Link href={link} className="group flex items-center gap-3">
+            <div
+                className={`rounded-md p-1.5 transition-colors duration-400 ${pathname === link ? 'bg-white text-black' : 'bg-[#202020] text-white group-hover:bg-white group-hover:text-black'}`}
+            >
                 <Icon path={icon} size={1.3} />
             </div>
             <li className="text-lg">{children}</li>
-        </a>
+        </Link>
     );
 }
 
