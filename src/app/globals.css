@@ -15,7 +15,8 @@ body {
 }
 
 .scaleOnHover {
-    will-change: transform;
+    -webkit-font-smoothing: subpixel-antialiased;
+    backface-visibility: hidden;
     transition: scale 200ms;
 }
 
