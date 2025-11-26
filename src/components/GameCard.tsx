@@ -5,6 +5,7 @@ import Link from 'next/link';
 import shimmer from '@/utils/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
+import AddToCartButton from './AddToCartButton';
 
 export default function GameCard({
     id,
@@ -13,6 +14,7 @@ export default function GameCard({
     price,
     isAdded,
     platforms,
+    token,
     className
 }: {
     id: number;
@@ -22,6 +24,7 @@ export default function GameCard({
     isAdded: boolean;
     platforms: PlatformType[];
     className?: string;
+    token: string | undefined;
 }) {
     return (
         <div
@@ -45,7 +48,11 @@ export default function GameCard({
 
             <div className="flex flex-col gap-3 p-4">
                 <div className="flex justify-between text-[rgb(24,176,171)]">
-                    <button>{isAdded ? `Added ✓` : 'Add to cart +'}</button>
+                    <AddToCartButton
+                        isAdded={isAdded}
+                        gameId={id}
+                        token={token}
+                    />
                     <div>${price}</div>
                 </div>
 
