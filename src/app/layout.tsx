@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
+import { SessionProvider } from 'next-auth/react';
 import QueryProvider from '@/components/QueryProvider';
 import localFont from 'next/font/local';
 import Link from 'next/link';
@@ -35,37 +36,37 @@ export default async function RootLayout({
 }>) {
     return (
         <QueryProvider>
-            <html lang="en" className={GTWalsheimPro.className}>
-                <head>
-                    <link rel="icon" href="/favicon.ico" sizes="any" />
-                </head>
-                <body>
-                    <Toaster position="bottom-right" />
-                    <header className="relative z-10 container mx-auto flex items-center justify-between gap-4 p-4">
-                        <Link
-                            href="/"
-                            className="scaleOnHover flex cursor-pointer items-center gap-2"
-                        >
-                            <Image
-                                src="/logo.png"
-                                width={45}
-                                height={45}
-                                alt=""
-                            />
-                            <span className="hidden text-3xl font-medium sm:block">
-                                Game Store
-                            </span>
-                        </Link>
+            <SessionProvider>
+                <html lang="en" className={GTWalsheimPro.className}>
+                    <head>
+                        <link rel="icon" href="/favicon.ico" sizes="any" />
+                    </head>
+                    <body>
+                        <Toaster position="bottom-right" />
+                        <header className="relative z-10 container mx-auto flex items-center justify-between gap-4 p-4">
+                            <Link
+                                href="/"
+                                className="scaleOnHover flex cursor-pointer items-center gap-2"
+                            >
+                                <Image
+                                    src="/logo.png"
+                                    width={45}
+                                    height={45}
+                                    alt=""
+                                />
+                                <span className="hidden text-3xl font-medium sm:block">
+                                    Game Store
+                                </span>
+                            </Link>
 
-                        <SearchBar />
+                            <SearchBar />
 
-                        <Control />
-                    </header>
-                    {/* <div className="flex flex-col items-center justify-center"> */}
+                            <Control />
+                        </header>
                         {children}
-                    {/* </div> */}
-                </body>
-            </html>
+                    </body>
+                </html>
+            </SessionProvider>
         </QueryProvider>
     );
 }
