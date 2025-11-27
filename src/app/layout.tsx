@@ -43,7 +43,7 @@ export default async function RootLayout({
                     </head>
                     <body>
                         <Toaster position="bottom-right" />
-                        <header className="relative z-10 container mx-auto flex items-center justify-between gap-4 p-4">
+                        <header className="relative z-100 container mx-auto flex items-center justify-between gap-4 p-4">
                             <Link
                                 href="/"
                                 className="scaleOnHover flex cursor-pointer items-center gap-2"
