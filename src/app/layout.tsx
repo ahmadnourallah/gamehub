@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
 import { SessionProvider } from 'next-auth/react';
+import { CartContextProvider } from '@/context/CartContextProvider';
 import QueryProvider from '@/components/QueryProvider';
 import localFont from 'next/font/local';
 import Link from 'next/link';
@@ -8,6 +9,8 @@ import Image from 'next/image';
 import SearchBar from '@/components/SearchBar';
 import Control from '@/components/Control';
 import './globals.css';
+import { auth } from '@/auth';
+import { CartType, getCart } from '@/queries/cart';
 
 const GTWalsheimPro = localFont({
     src: [
@@ -34,38 +37,47 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const session = await auth();
+    let initialCart;
+    if (session) {
+        const response = await getCart(session.accessToken);
+        if (response.status === 'success') initialCart = response.data.cart;
+    }
+
     return (
         <QueryProvider>
             <SessionProvider>
-                <html lang="en" className={GTWalsheimPro.className}>
-                    <head>
-                        <link rel="icon" href="/favicon.ico" sizes="any" />
-                    </head>
-                    <body>
-                        <Toaster position="bottom-right" />
-                        <header className="relative z-100 container mx-auto flex items-center justify-between gap-4 p-4">
-                            <Link
-                                href="/"
-                                className="scaleOnHover flex cursor-pointer items-center gap-2"
-                            >
-                                <Image
-                                    src="/logo.png"
-                                    width={45}
-                                    height={45}
-                                    alt=""
-                                />
-                                <span className="hidden text-3xl font-medium sm:block">
-                                    Game Store
-                                </span>
-                            </Link>
+                <CartContextProvider initialCart={initialCart}>
+                    <html lang="en" className={GTWalsheimPro.className}>
+                        <head>
+                            <link rel="icon" href="/favicon.ico" sizes="any" />
+                        </head>
+                        <body>
+                            <Toaster position="bottom-right" />
+                            <header className="relative z-100 container mx-auto flex items-center justify-between gap-4 p-4">
+                                <Link
+                                    href="/"
+                                    className="scaleOnHover flex cursor-pointer items-center gap-2"
+                                >
+                                    <Image
+                                        src="/logo.png"
+                                        width={45}
+                                        height={45}
+                                        alt=""
+                                    />
+                                    <span className="hidden text-3xl font-medium sm:block">
+                                        Game Store
+                                    </span>
+                                </Link>
 
-                            <SearchBar />
+                                <SearchBar />
 
-                            <Control />
-                        </header>
-                        {children}
-                    </body>
-                </html>
+                                <Control />
+                            </header>
+                            {children}
+                        </body>
+                    </html>
+                </CartContextProvider>
             </SessionProvider>
         </QueryProvider>
     );

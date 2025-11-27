@@ -2,6 +2,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { addToCart } from '@/queries/cart';
 import { useRouter } from 'next/navigation';
+import { useContext, useEffect } from 'react';
+import { CartContext } from '@/context/CartContextProvider';
 
 export default function AddToCartButton({
     isAdded,
@@ -15,8 +17,9 @@ export default function AddToCartButton({
     className?: string;
 }) {
     const router = useRouter();
+    const { dispatch } = useContext(CartContext);
 
-    const { isPending, isError, isSuccess, error, mutate } = useMutation({
+    const { isPending, isError, isSuccess, error, data, mutate } = useMutation({
         mutationFn: async ({
             token,
             gameId
@@ -30,6 +33,11 @@ export default function AddToCartButton({
 
     if (isError) console.log(error);
     if (isSuccess) isAdded = true;
+
+    useEffect(() => {
+        if (isSuccess && data.status === 'success')
+            dispatch({ type: 'ADD', payload: data.data.cart });
+    }, [isSuccess, data, dispatch]);
 
     return (
         <button
