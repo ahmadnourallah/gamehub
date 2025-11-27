@@ -42,7 +42,10 @@ export default function Navbar() {
                 <Icon path={mdiMenu} size={1.3} color="#000" />
             </button>
 
-            <Slider className={'bg-background'} isActive={isActive}>
+            <Slider
+                className="bg-background sm:!visible sm:static sm:h-auto sm:!transform-none sm:p-0"
+                isActive={isActive}
+            >
                 <nav className="flex flex-col gap-8 border-r-1 border-r-[#202020] p-4 sm:border-none">
                     <div>
                         <ul>
