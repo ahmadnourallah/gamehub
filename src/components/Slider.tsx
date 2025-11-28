@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ReactNode, RefObject, useRef } from 'react';
+import { ReactNode, RefObject } from 'react';
 
 export default function Slider({
     isActive,
@@ -14,8 +14,6 @@ export default function Slider({
     className?: string;
     ref?: RefObject<HTMLDivElement | null>;
 }) {
-    const divRef = useRef<HTMLDivElement>(null);
-
     return (
         <motion.div
             ref={ref}
@@ -24,13 +22,13 @@ export default function Slider({
                 x: isActive
                     ? 0
                     : position === 'left'
-                      ? -(divRef?.current?.offsetWidth || 300)
-                      : divRef?.current?.offsetWidth || 300,
+                      ? -(ref?.current?.offsetWidth || 300)
+                      : ref?.current?.offsetWidth || 300,
                 visibility: isActive ? 'visible' : 'hidden'
             }}
             className={`absolute top-0 h-full ${position === 'left' ? 'left-0' : 'right-0'} z-80 ${className}`}
         >
-            <div ref={divRef}>{children}</div>
+            {children}
         </motion.div>
     );
 }
