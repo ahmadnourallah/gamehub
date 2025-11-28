@@ -1,3 +1,4 @@
+'use client';
 import { mdiConsole } from '@mdi/js';
 import { Platforms } from '@/utils/icons';
 import { PlatformType } from '@/queries/platform';
@@ -12,19 +13,15 @@ export default function GameCard({
     thumbnail,
     title,
     price,
-    isAdded,
     platforms,
-    token,
     className
 }: {
     id: number;
     thumbnail: string;
     title: string;
     price: number;
-    isAdded: boolean;
     platforms: PlatformType[];
     className?: string;
-    token: string | undefined;
 }) {
     return (
         <div
@@ -48,11 +45,7 @@ export default function GameCard({
 
             <div className="flex flex-col gap-3 p-4">
                 <div className="flex justify-between text-[rgb(24,176,171)]">
-                    <AddToCartButton
-                        isAdded={isAdded}
-                        gameId={id}
-                        token={token}
-                    />
+                    <AddToCartButton gameId={id} />
                     <div>${price}</div>
                 </div>
 

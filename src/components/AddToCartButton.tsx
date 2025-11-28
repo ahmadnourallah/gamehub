@@ -4,20 +4,21 @@ import { addToCart } from '@/queries/cart';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
+import { useSession } from 'next-auth/react';
 
 export default function AddToCartButton({
-    isAdded,
     gameId,
-    token,
     className
 }: {
-    isAdded: boolean;
     gameId: number;
-    token: string | undefined;
     className?: string;
 }) {
+    const { cart, dispatch } = useContext(CartContext);
+    const { data: session } = useSession();
     const router = useRouter();
-    const { dispatch } = useContext(CartContext);
+    const isAdded = cart?.cartItems.find((item) => item.gameId === gameId)
+        ? true
+        : false;
 
     const { isPending, isError, isSuccess, error, data, mutate } = useMutation({
         mutationFn: async ({
@@ -32,7 +33,6 @@ export default function AddToCartButton({
     });
 
     if (isError) console.log(error);
-    if (isSuccess) isAdded = true;
 
     useEffect(() => {
         if (isSuccess && data.status === 'success')
@@ -44,7 +44,7 @@ export default function AddToCartButton({
             className={`${isPending ? 'opacity-40' : ''} ${className}`}
             disabled={isPending || isAdded}
             onClick={() => {
-                if (token) mutate({ token: token, gameId });
+                if (session) mutate({ token: session.accessToken, gameId });
                 else router.push('/login');
             }}
         >
