@@ -59,3 +59,39 @@ export async function getCart(
 
     return await response.json();
 }
+
+export async function clearCart(
+    token: string
+): Promise<ResponseType<'data', null>> {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/cart`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok && response.status !== 404)
+        throw new Error("Server isn't responding!");
+
+    return await response.json();
+}
+
+export async function deleteCartItem(
+    token: string,
+    gameId: number
+): Promise<ResponseType<'data', null>> {
+    const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API}/cart/${gameId}`,
+        {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+
+    if (!response.ok && response.status !== 404)
+        throw new Error("Server isn't responding!");
+
+    return await response.json();
+}

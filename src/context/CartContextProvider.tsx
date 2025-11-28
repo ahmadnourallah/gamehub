@@ -35,9 +35,16 @@ const cartReducer = (cart: CartType | undefined, action: ActionType) => {
         }
 
         case 'DELETE': {
+            return {
+                ...cart,
+                cartItems: cart?.cartItems.filter(
+                    (item) => item.gameId !== action.payload
+                )
+            } as CartType;
         }
 
         case 'CLEAR': {
+            return { ...cart, cartItems: [] } as CartType;
         }
 
         default: {
