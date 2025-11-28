@@ -31,7 +31,6 @@ export default function GameSlider({ games }: { games: GameType[] }) {
                                 thumbnail={game.images[0]}
                                 title={game.title}
                                 price={game.price}
-                                isAdded={false}
                                 platforms={game.platforms}
                             />
                         </div>
