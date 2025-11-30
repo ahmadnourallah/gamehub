@@ -1,5 +1,5 @@
 'use client';
-import { mdiFire, mdiMenu } from '@mdi/js';
+import { mdiClose, mdiFire, mdiMenu } from '@mdi/js';
 import { Platforms, Genres } from '@/utils/icons';
 import { ReactNode, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -37,9 +37,13 @@ export default function Navbar() {
         <>
             <button
                 onClick={() => setIsActive(!isActive)}
-                className="fixed right-4 bottom-4 z-100 rounded-full bg-white p-1.5 text-2xl sm:hidden"
+                className="fixed right-4 bottom-4 z-70 rounded-full bg-white p-1.5 text-2xl sm:hidden"
             >
-                <Icon path={mdiMenu} size={1.3} color="#000" />
+                <Icon
+                    path={isActive ? mdiClose : mdiMenu}
+                    size={1.3}
+                    color="#000"
+                />
             </button>
 
             <Slider
