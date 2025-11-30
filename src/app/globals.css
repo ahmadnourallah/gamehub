@@ -5,6 +5,17 @@
     --color-background: #0f1011;
 }
 
+@utility scrollbar-hidden {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    & {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
 button {
     cursor: pointer;
 }
@@ -22,6 +33,10 @@ body {
 
 .scaleOnHover:hover {
     scale: 1.05;
+}
+
+.tooltip {
+    position: relative;
 }
 
 .tooltip::after {
