@@ -18,6 +18,7 @@ export default function Slider({
         <motion.div
             ref={ref}
             transition={{ bounce: 0 }}
+            initial={{ visibility: 'hidden' }}
             animate={{
                 x: isActive
                     ? 0
