@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
 import { SessionProvider } from 'next-auth/react';
 import { CartContextProvider } from '@/context/CartContextProvider';
+import { getCart } from '@/queries/cart';
+import { auth } from '@/auth';
 import QueryProvider from '@/components/QueryProvider';
 import localFont from 'next/font/local';
 import Link from 'next/link';
@@ -9,8 +11,6 @@ import Image from 'next/image';
 import SearchBar from '@/components/SearchBar';
 import Control from '@/components/Control';
 import './globals.css';
-import { auth } from '@/auth';
-import { CartType, getCart } from '@/queries/cart';
 
 const GTWalsheimPro = localFont({
     src: [
