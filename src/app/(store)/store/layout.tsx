@@ -20,7 +20,7 @@ export default async function StoreLayout({
                     genreResponse={genreResponse}
                     platformResponse={platformResponse}
                 />
-                <div className="scrollbar-hidden h-full w-full overflow-x-auto">
+                <div className="scrollbar-hidden h-full w-full overflow-x-auto px-6 pt-4">
                     {children}
                 </div>
             </div>
