@@ -12,11 +12,13 @@ import Icon from '@mdi/react';
 export default function CartItem({
     gameId,
     price,
-    token
+    token,
+    close
 }: {
     gameId: number;
     price: number;
     token: string;
+    close: VoidFunction;
 }) {
     const { dispatch } = useContext(CartContext);
 
@@ -59,7 +61,6 @@ export default function CartItem({
             <div className="flex flex-col gap-4 rounded-lg bg-[rgb(38,38,38)] p-4">
                 <button
                     onClick={() => {
-                        console.log(token, gameId);
                         deleteMutation.mutate({ token, gameId });
                         dispatch({ type: 'DELETE', payload: gameId });
                     }}
@@ -68,7 +69,7 @@ export default function CartItem({
                     <Icon path={mdiCloseCircle} size={0.9} />
                 </button>
 
-                <Link href={`/store/games/${gameId}`}>
+                <Link onClick={close} href={`/store/games/${gameId}`}>
                     <div className="flex flex-col justify-between gap-4 sm:flex-row">
                         <Image
                             className="h-auto w-full rounded-lg sm:w-30"

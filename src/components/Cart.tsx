@@ -17,12 +17,9 @@ interface KeyboardEvent {
 export default function Cart() {
     const { cart, dispatch } = useContext(CartContext);
     const { data: session } = useSession();
+    const close = () => setIsActive(false);
     const [isActive, setIsActive] = useState(false);
-    const ref = useOutsideClick(() => setIsActive(false));
-
-    function handleExit(evt: KeyboardEvent) {
-        if (evt.key === 'Escape') setIsActive(false);
-    }
+    const ref = useOutsideClick(close);
 
     const { mutate } = useMutation({
         mutationFn: async ({ token }: { token: string }) => {
@@ -31,6 +28,9 @@ export default function Cart() {
     });
 
     useEffect(() => {
+        const handleExit = (evt: KeyboardEvent) =>
+            evt.key === 'Escape' && close();
+
         if (isActive) {
             document.body.classList.add('overflow-y-hidden');
             document.body.addEventListener('keydown', handleExit);
@@ -98,6 +98,7 @@ export default function Cart() {
                             token={session?.accessToken as string}
                             gameId={item.gameId}
                             price={item.price}
+                            close={close}
                         />
                     ))}
                 </div>
