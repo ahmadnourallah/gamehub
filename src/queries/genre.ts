@@ -6,6 +6,17 @@ export interface GenreType {
     createdAt: string;
 }
 
+export async function getGenres(): Promise<
+    ResponseType<'genres', GenreType[]>
+> {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/genres`);
+
+    if (!response.ok && response.status !== 404)
+        throw new Error("Server isn't responding!");
+
+    return await response.json();
+}
+
 export async function getGenreGames(
     genreName: string,
     start: number = 0,
