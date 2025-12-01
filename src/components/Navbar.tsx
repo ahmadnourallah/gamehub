@@ -1,6 +1,9 @@
 'use client';
 import { mdiClose, mdiFire, mdiMenu } from '@mdi/js';
-import { Platforms, Genres } from '@/utils/icons';
+import { ResponseType } from '@/queries/game';
+import { GenreType } from '@/queries/genre';
+import { PlatformType } from '@/queries/platform';
+import { getGenreIcon, getPlatformIcon } from '@/utils/icons';
 import { ReactNode, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Slider from './Slider';
@@ -30,7 +33,13 @@ function NavItem({
     );
 }
 
-export default function Navbar() {
+export default function Navbar({
+    genreResponse,
+    platformResponse
+}: {
+    genreResponse: ResponseType<'genres', GenreType[]>;
+    platformResponse: ResponseType<'platforms', PlatformType[]>;
+}) {
     const [isActive, setIsActive] = useState(false);
 
     return (
@@ -59,39 +68,49 @@ export default function Navbar() {
                         </ul>
                     </div>
 
-                    <div>
-                        <div className="mb-2 text-4xl font-bold">Genres</div>
-                        <ul className="flex flex-col gap-2">
-                            {Object.entries(Genres).map(
-                                ([genre, icon], index: number) => (
-                                    <NavItem
-                                        key={index}
-                                        link={`/store/genres/${genre}`}
-                                        icon={icon}
-                                    >
-                                        {genre}
-                                    </NavItem>
-                                )
-                            )}
-                        </ul>
-                    </div>
+                    {genreResponse.status === 'success' && (
+                        <div>
+                            <div className="mb-2 text-4xl font-bold">
+                                Genres
+                            </div>
+                            <ul className="flex flex-col gap-2">
+                                {genreResponse.data.genres.map(
+                                    (genre, index) => (
+                                        <NavItem
+                                            key={index}
+                                            link={`/store/genres/${genre.name}`}
+                                            icon={getGenreIcon(genre.name)}
+                                        >
+                                            {genre.name}
+                                        </NavItem>
+                                    )
+                                )}
+                            </ul>
+                        </div>
+                    )}
 
-                    <div>
-                        <div className="mb-2 text-4xl font-bold">Platforms</div>
-                        <ul className="flex flex-col gap-2">
-                            {Object.entries(Platforms).map(
-                                ([platform, icon], index: number) => (
-                                    <NavItem
-                                        key={index}
-                                        link={`/store/platforms/${platform}`}
-                                        icon={icon}
-                                    >
-                                        {platform}
-                                    </NavItem>
-                                )
-                            )}
-                        </ul>
-                    </div>
+                    {platformResponse.status === 'success' && (
+                        <div>
+                            <div className="mb-2 text-4xl font-bold">
+                                Platforms
+                            </div>
+                            <ul className="flex flex-col gap-2">
+                                {platformResponse.data.platforms.map(
+                                    (platform, index) => (
+                                        <NavItem
+                                            key={index}
+                                            link={`/store/platforms/${platform.name}`}
+                                            icon={getPlatformIcon(
+                                                platform.name
+                                            )}
+                                        >
+                                            {platform.name}
+                                        </NavItem>
+                                    )
+                                )}
+                            </ul>
+                        </div>
+                    )}
                 </nav>
             </Slider>
         </>

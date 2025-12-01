@@ -12,25 +12,38 @@ import {
     mdiSonyPlaystation,
     mdiNintendoSwitch,
     mdiAppleIos,
-    mdiAndroid
+    mdiAndroid,
+    mdiGamepadVariant,
+    mdiConsole
 } from '@mdi/js';
 
-export const Platforms = {
-    PC: mdiMicrosoftWindows,
-    PlayStation: mdiSonyPlaystation,
-    Xbox: mdiMicrosoftXbox,
-    Nintendo: mdiNintendoSwitch,
-    iOS: mdiAppleIos,
-    Android: mdiAndroid
+const Platforms = {
+    pc: mdiMicrosoftWindows,
+    playstation: mdiSonyPlaystation,
+    xbox: mdiMicrosoftXbox,
+    nintendo: mdiNintendoSwitch,
+    ios: mdiAppleIos,
+    android: mdiAndroid
 };
 
-export const Genres = {
-    Action: mdiBoxingGlove,
-    Strategy: mdiChessRook,
-    RPG: mdiSwordCross,
-    Shooter: mdiPistol,
-    Adventure: mdiPyramid,
-    Puzzle: mdiPuzzle,
-    Racing: mdiFlagCheckered,
-    Sports: mdiFootball
+const Genres = {
+    action: mdiBoxingGlove,
+    strategy: mdiChessRook,
+    rpg: mdiSwordCross,
+    shooter: mdiPistol,
+    adventure: mdiPyramid,
+    puzzle: mdiPuzzle,
+    racing: mdiFlagCheckered,
+    sports: mdiFootball
 };
+
+const getIcon = (
+    iconObject: { [k: string]: string },
+    iconName: string
+): string => iconObject[iconName.toLowerCase()];
+
+export const getPlatformIcon = (icon: string) =>
+    getIcon(Platforms, icon) || mdiConsole;
+
+export const getGenreIcon = (icon: string) =>
+    getIcon(Genres, icon) || mdiGamepadVariant;

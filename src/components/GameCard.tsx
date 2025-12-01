@@ -1,6 +1,5 @@
 'use client';
-import { mdiConsole } from '@mdi/js';
-import { Platforms } from '@/utils/icons';
+import { getPlatformIcon } from '@/utils/icons';
 import { PlatformType } from '@/queries/platform';
 import Link from 'next/link';
 import shimmer from '@/utils/shimmer';
@@ -54,11 +53,7 @@ export default function GameCard({
                         <Icon
                             size={0.8}
                             key={index}
-                            path={
-                                Platforms[
-                                    platform.name as keyof typeof Platforms
-                                ] || mdiConsole
-                            }
+                            path={getPlatformIcon(platform.name)}
                         />
                     ))}
                 </div>
