@@ -56,10 +56,10 @@ export default function Navbar({
             </button>
 
             <Slider
-                className="bg-background sm:!visible sm:static sm:h-auto sm:!transform-none sm:p-0"
+                className="bg-background h-full overflow-visible sm:!visible sm:static sm:!transform-none sm:p-0"
                 isActive={isActive}
             >
-                <nav className="flex flex-col gap-8 border-r-1 border-r-[#202020] p-4 sm:border-none">
+                <nav className="scrollbar-hidden flex h-full flex-col gap-8 overflow-x-visible overflow-y-auto border-r-1 border-r-[#202020] p-4 sm:border-none">
                     <div>
                         <ul>
                             <NavItem link="/store" icon={mdiFire}>

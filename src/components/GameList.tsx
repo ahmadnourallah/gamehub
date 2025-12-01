@@ -3,7 +3,7 @@ import GameCard from './GameCard';
 
 export default async function GameList({ games }: { games: GameType[] }) {
     return (
-        <div className="grid h-max w-full grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+        <div className="grid h-max grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 px-6 pt-4">
             {games.map((game) => (
                 <GameCard
                     key={game.id}
