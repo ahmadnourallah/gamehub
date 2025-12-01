@@ -1,8 +1,14 @@
 import LoginForm from '@/components/LoginForm';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function LoginPage() {
+export default async function LoginPage() {
+    const session = await auth();
+
+    if (session) redirect('/');
+
     return (
-        <div className="flex flex-col justify-center items-center mt-12">
+        <div className="mt-12 flex flex-col items-center justify-center">
             <h1 className="mb-8 text-center text-4xl">Log in</h1>
 
             <LoginForm />
