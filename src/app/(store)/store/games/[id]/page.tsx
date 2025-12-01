@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import PreviewCarousel from '@/components/PreviewCarousel';
 import GameDetails from '@/components/GameDetails';
 import AddToCartButton from '@/components/AddToCartButton';
+import BackButton from '@/components/BackButton';
 
 export default async function Game({
     params
@@ -17,8 +18,12 @@ export default async function Game({
         const game = response.data.game;
 
         return (
-            <div className="w-full">
-                <h1 className="mb-10 text-5xl font-bold">{game.title}</h1>
+            <div className="w-full pb-4">
+                <div className="flex items-baseline justify-between">
+                    <BackButton />
+                    <h1 className="mb-10 text-5xl font-bold">{game.title}</h1>
+                </div>
+
                 <PreviewCarousel images={game.images} />
 
                 <GameDetails game={game} />
