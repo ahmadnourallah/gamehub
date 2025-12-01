@@ -17,7 +17,7 @@ interface KeyboardEvent {
 export default function Cart() {
     const { cart, dispatch } = useContext(CartContext);
     const { data: session } = useSession();
-    const [isActive, setIsActive] = useState(true);
+    const [isActive, setIsActive] = useState(false);
     const ref = useOutsideClick(() => setIsActive(false));
 
     function handleExit(evt: KeyboardEvent) {

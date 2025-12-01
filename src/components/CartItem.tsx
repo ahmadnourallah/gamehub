@@ -4,6 +4,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import { deleteCartItem } from '@/queries/cart';
 import { useContext } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
+import Link from 'next/link';
 import shimmer from '@/utils/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
@@ -67,27 +68,29 @@ export default function CartItem({
                     <Icon path={mdiCloseCircle} size={0.9} />
                 </button>
 
-                <div className="flex flex-col justify-between gap-4 sm:flex-row">
-                    <Image
-                        className="h-auto w-full rounded-lg sm:w-30"
-                        placeholder={`data:image/svg+xml;base64,${shimmer()}`}
-                        src={
-                            game.images[0]
-                                ? `${process.env.NEXT_PUBLIC_API}/${game.images[0]}`
-                                : '/default.jpg'
-                        }
-                        alt=""
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                    />
-                    <div className="flex flex-col items-end justify-center text-left">
-                        <p className="line-clamp-1" title={game.title}>
-                            {game.title}
-                        </p>
-                        <p className="text-[rgb(153,153,153)]">${price}</p>
+                <Link href={`/store/games/${gameId}`}>
+                    <div className="flex flex-col justify-between gap-4 sm:flex-row">
+                        <Image
+                            className="h-auto w-full rounded-lg sm:w-30"
+                            placeholder={`data:image/svg+xml;base64,${shimmer()}`}
+                            src={
+                                game.images[0]
+                                    ? `${process.env.NEXT_PUBLIC_API}/${game.images[0]}`
+                                    : '/default.jpg'
+                            }
+                            alt=""
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                        />
+                        <div className="flex flex-col items-end justify-center text-left">
+                            <p className="line-clamp-1" title={game.title}>
+                                {game.title}
+                            </p>
+                            <p className="text-[rgb(153,153,153)]">${price}</p>
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
         );
     }
