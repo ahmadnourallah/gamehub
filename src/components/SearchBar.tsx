@@ -4,6 +4,7 @@ import { mdiMagnify } from '@mdi/js';
 import { useQuery } from '@tanstack/react-query';
 import { getGames } from '@/queries/game';
 import { useState } from 'react';
+import { useOutsideClick } from '@/utils/hooks';
 import shimmer from '@/utils/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
@@ -11,6 +12,7 @@ import Spinner from './Spinner';
 import Link from 'next/link';
 
 export default function SearchBar() {
+    const [isActive, setIsActive] = useState(false);
     const [search, setSearch] = useState('');
     const {
         isLoading,
@@ -32,57 +34,69 @@ export default function SearchBar() {
         );
     };
 
-    return (
-        <div ref={scope} className="group relative not-sm:!w-full sm:w-1/4">
-            <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search games..."
-                onBlur={async () => await animateWidth('revert-layer')}
-                onFocus={async () => await animateWidth('40%')}
-                className="group h-[50%] !w-full rounded-md bg-white py-2 pr-11 pl-3 text-black after:content-none focus:outline-0"
-            />
-            <button
-                className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
-                onBlur={async () => await animateWidth('revert-layer')}
-                onFocus={async () => await animateWidth('40%')}
-            >
-                <Icon path={mdiMagnify} size={1} color="#000" />
-            </button>
+    const open = async () => {
+        setIsActive(true);
+        await animateWidth('40%');
+    };
 
-            <div className="absolute top-12 hidden h-70 w-full overflow-y-auto rounded-md bg-white text-black group-focus-within:block">
-                {isSuccess &&
-                    games.length > 0 &&
-                    games.map((game) => (
-                        <Link
-                            href={`/store/games/${game.id}`}
-                            className="flex cursor-pointer flex-col items-center gap-4 p-4 hover:bg-[rgb(218,218,218)] sm:flex-row"
-                            key={game.id}
-                        >
-                            <Image
-                                className="h-full w-full rounded-md sm:h-25 sm:w-30"
-                                placeholder={`data:image/svg+xml;base64,${shimmer()}`}
-                                src={`${process.env.NEXT_PUBLIC_API}/${game.images[0]}`}
-                                alt=""
-                                width={0}
-                                height={0}
-                                sizes="100%"
-                            />
-                            <span className="text-center sm:text-left">
-                                {game.title}
-                            </span>
-                        </Link>
-                    ))}
-                {isSuccess && games.length === 0 && (
-                    <div className="flex h-full items-center justify-center">
-                        No results
-                    </div>
-                )}
-                {isLoading && (
-                    <div className="flex h-full items-center justify-center">
-                        <Spinner size="50px" />
-                    </div>
-                )}
+    const close = async () => {
+        setIsActive(false);
+        await animateWidth('revert-layer');
+    };
+
+    const ref = useOutsideClick(close);
+
+    return (
+        <div ref={scope} className="relative not-sm:!w-full sm:w-1/4">
+            <div ref={ref}>
+                <input
+                    onFocus={open}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search games..."
+                    className="h-[50%] !w-full rounded-md bg-white py-2 pr-11 pl-3 text-black after:content-none focus:outline-0"
+                />
+                <button className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer">
+                    <Icon path={mdiMagnify} size={1} color="#000" />
+                </button>
+
+                <div
+                    className={`absolute top-12 h-70 w-full overflow-y-auto rounded-md bg-white text-black ${isActive ? 'block' : 'hidden'}`}
+                >
+                    {isSuccess &&
+                        games.length > 0 &&
+                        games.map((game) => (
+                            <Link
+                                onClick={close}
+                                href={`/store/games/${game.id}`}
+                                className="flex cursor-pointer flex-col items-center gap-4 p-4 hover:bg-[rgb(218,218,218)] sm:flex-row"
+                                key={game.id}
+                            >
+                                <Image
+                                    className="h-full w-full rounded-md sm:h-25 sm:w-30"
+                                    placeholder={`data:image/svg+xml;base64,${shimmer()}`}
+                                    src={`${process.env.NEXT_PUBLIC_API}/${game.images[0]}`}
+                                    alt=""
+                                    width={0}
+                                    height={0}
+                                    sizes="100%"
+                                />
+                                <span className="text-center sm:text-left">
+                                    {game.title}
+                                </span>
+                            </Link>
+                        ))}
+                    {isSuccess && games.length === 0 && (
+                        <div className="flex h-full items-center justify-center">
+                            No results
+                        </div>
+                    )}
+                    {isLoading && (
+                        <div className="flex h-full items-center justify-center">
+                            <Spinner size="50px" />
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
