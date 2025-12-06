@@ -69,7 +69,7 @@ export default function SearchBar() {
                             <Link
                                 onClick={close}
                                 href={`/store/games/${game.id}`}
-                                className="flex cursor-pointer flex-col items-center gap-4 p-4 hover:bg-[rgb(218,218,218)] sm:flex-row"
+                                className="flex cursor-pointer flex-col items-center gap-4 p-4 hover:bg-[rgb(218,218,218)] focus:bg-[rgb(218,218,218)] focus:outline-none sm:flex-row"
                                 key={game.id}
                             >
                                 <Image
