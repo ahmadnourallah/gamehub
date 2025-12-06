@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
-import { SessionProvider } from 'next-auth/react';
 import QueryProvider from '@/components/QueryProvider';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -32,17 +31,15 @@ export default async function RootLayout({
 }>) {
     return (
         <QueryProvider>
-            <SessionProvider>
-                <html lang="en" className={GTWalsheimPro.className}>
-                    <head>
-                        <link rel="icon" href="/favicon.ico" sizes="any" />
-                    </head>
-                    <body>
-                        <Toaster position="bottom-right" />
-                        {children}
-                    </body>
-                </html>
-            </SessionProvider>
+            <html lang="en" className={GTWalsheimPro.className}>
+                <head>
+                    <link rel="icon" href="/favicon.ico" sizes="any" />
+                </head>
+                <body>
+                    <Toaster position="bottom-right" />
+                    {children}
+                </body>
+            </html>
         </QueryProvider>
     );
 }

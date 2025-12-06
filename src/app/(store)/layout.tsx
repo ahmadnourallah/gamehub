@@ -2,6 +2,7 @@ import { CartContextProvider } from '@/context/CartContextProvider';
 import { auth } from '@/auth';
 import { getCart } from '@/queries/cart';
 import { ReactNode } from 'react';
+import { SessionProvider } from 'next-auth/react';
 
 export default async function StoreLayout({
     children
@@ -16,8 +17,10 @@ export default async function StoreLayout({
     }
 
     return (
-        <CartContextProvider initialCart={initialCart}>
-            {children}
-        </CartContextProvider>
+        <SessionProvider>
+            <CartContextProvider initialCart={initialCart}>
+                {children}
+            </CartContextProvider>
+        </SessionProvider>
     );
 }
