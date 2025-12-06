@@ -1,7 +1,25 @@
-export interface User {
+import { ResponseType } from './game';
+
+export interface UserType {
     id: number;
     name: string;
     email: string;
     role: string;
     token: string;
+}
+
+export async function createUser(
+    name: string,
+    email: string,
+    password: string
+): Promise<ResponseType<'user', UserType>> {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/users`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+    });
+
+    return response.json();
 }
