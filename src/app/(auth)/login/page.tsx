@@ -8,7 +8,7 @@ export default async function LoginPage() {
     if (session) redirect('/');
 
     return (
-        <div className="mt-12 flex flex-col items-center justify-center">
+        <div className="flex h-screen w-screen flex-col items-center justify-center">
             <h1 className="mb-8 text-center text-4xl">Log in</h1>
 
             <LoginForm />
