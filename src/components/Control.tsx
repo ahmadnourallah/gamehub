@@ -1,8 +1,9 @@
-import { mdiLogin, mdiLogout, mdiAccountPlus } from '@mdi/js';
-import { auth, signOut } from '@/auth';
+import { mdiLogin, mdiAccountPlus } from '@mdi/js';
+import { auth } from '@/auth';
 import Link from 'next/link';
 import Icon from '@mdi/react';
 import Cart from '@/components/Cart';
+import SignOutButton from './SignOutButton';
 
 export default async function Control() {
     const session = await auth();
@@ -36,22 +37,7 @@ export default async function Control() {
 
             {session && (
                 <>
-                    <form
-                        action={async () => {
-                            'use server';
-                            await signOut();
-                        }}
-                    >
-                        <button
-                            data-tooltip="Logout"
-                            className="tooltip relative mr-2 border-r-2 border-r-white pr-2"
-                        >
-                            <Icon
-                                className="scaleOnHover h-5 w-5 sm:h-6 sm:w-6"
-                                path={mdiLogout}
-                            />
-                        </button>
-                    </form>
+                    <SignOutButton />
                     <Cart />
                 </>
             )}
