@@ -9,6 +9,7 @@ type ResponseDataType<DataKey extends string, DataType> = {
 interface FailResponseType {
     status: 'fail';
     code: number;
+    data: { [k: string]: string }[];
 }
 
 interface SuccessResponse<DataKey extends string, DataType> {
