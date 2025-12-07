@@ -6,7 +6,7 @@ import { PlatformType } from '@/queries/platform';
 import { getGenreIcon, getPlatformIcon } from '@/utils/icons';
 import { ReactNode, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Slider from './Slider';
+import Slider from '@/components/common/Slider';
 import Icon from '@mdi/react';
 import Link from 'next/link';
 

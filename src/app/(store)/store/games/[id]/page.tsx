@@ -1,9 +1,9 @@
 import { getGame } from '@/queries/game';
 import { notFound } from 'next/navigation';
-import PreviewCarousel from '@/components/PreviewCarousel';
-import GameDetails from '@/components/GameDetails';
-import AddToCartButton from '@/components/AddToCartButton';
-import BackButton from '@/components/BackButton';
+import PreviewCarousel from '@/components/store/PreviewCarousel';
+import GameDetails from '@/components/store/GameDetails';
+import AddToCartButton from '@/components/store/AddToCartButton';
+import BackButton from '@/components/store/BackButton';
 
 export default async function Game({
     params

@@ -1,4 +1,4 @@
-import GameList from '@/components/GameList';
+import GameList from '@/components/store/GameList';
 import { getGames } from '@/queries/game';
 
 export default async function Store() {

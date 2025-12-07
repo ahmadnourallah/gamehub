@@ -2,10 +2,10 @@ import { mdiGamepadVariant } from '@mdi/js';
 import { getGames } from '@/queries/game';
 import Link from 'next/link';
 import Icon from '@mdi/react';
-import Button from '@/components/Button';
-import GameSlider from '@/components/GameSlider';
-import Hero from '@/components/Hero';
-import Header from '@/components/Header';
+import Button from '@/components/common/Button';
+import GameSlider from '@/components/store/GameSlider';
+import Hero from '@/components/store/Hero';
+import Header from '@/components/store/Header';
 
 export default async function Home() {
     const games = await getGames();

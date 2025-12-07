@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { mdiArrowLeft } from '@mdi/js';
 import Link from 'next/link';
 import Icon from '@mdi/react';
-import AuthTitle from '@/components/AuthTitle';
+import AuthTitle from '@/components/common/AuthTitle';
 
 export default async function AuthLayout({
     children

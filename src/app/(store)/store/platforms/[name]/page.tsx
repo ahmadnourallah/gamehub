@@ -1,6 +1,6 @@
 import { getPlatformGames } from '@/queries/platform';
 import { notFound } from 'next/navigation';
-import GameList from '@/components/GameList';
+import GameList from '@/components/store/GameList';
 
 export default async function PlatformGames({
     params

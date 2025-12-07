@@ -2,8 +2,8 @@ import { mdiLogin, mdiAccountPlus } from '@mdi/js';
 import { auth } from '@/auth';
 import Link from 'next/link';
 import Icon from '@mdi/react';
-import Cart from '@/components/Cart';
-import SignOutButton from './SignOutButton';
+import Cart from '@/components/store/Cart';
+import SignOutButton from '@/components/common/SignOutButton';
 
 export default async function Control() {
     const session = await auth();

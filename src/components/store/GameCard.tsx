@@ -5,7 +5,7 @@ import Link from 'next/link';
 import shimmer from '@/utils/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
-import AddToCartButton from './AddToCartButton';
+import AddToCartButton from '@/components/store/AddToCartButton';
 
 export default function GameCard({
     id,

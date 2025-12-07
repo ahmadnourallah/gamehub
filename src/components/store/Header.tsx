@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import SearchBar from '@/components/SearchBar';
-import Control from '@/components/Control';
+import SearchBar from '@/components/common/SearchBar';
+import Control from '@/components/store/Control';
 
 export default async function Header() {
     return (

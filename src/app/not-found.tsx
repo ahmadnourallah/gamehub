@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import { Metadata } from 'next';
 import Link from 'next/link';
 

@@ -1,6 +1,6 @@
 import { getGenreGames } from '@/queries/genre';
 import { notFound } from 'next/navigation';
-import GameList from '@/components/GameList';
+import GameList from '@/components/store/GameList';
 
 export default async function GenreGames({
     params

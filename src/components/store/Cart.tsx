@@ -6,8 +6,8 @@ import { useOutsideClick } from '@/utils/hooks';
 import { useMutation } from '@tanstack/react-query';
 import { clearCart } from '@/queries/cart';
 import { useSession } from 'next-auth/react';
-import Slider from './Slider';
-import CartItem from './CartItem';
+import Slider from '@/components/common/Slider';
+import CartItem from '@/components/store/CartItem';
 import Icon from '@mdi/react';
 
 interface KeyboardEvent {

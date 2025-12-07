@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
-import QueryProvider from '@/components/QueryProvider';
+import QueryProvider from '@/components/common/QueryProvider';
 import localFont from 'next/font/local';
 import './globals.css';
 

@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { validateEmail, validatePassword } from '@/utils/validation';
 import { createUser } from '@/queries/user';
-import Button from './Button';
+import Button from '@/components/common/Button';
 import Link from 'next/link';
-import AuthInput from './AuthInput';
+import AuthInput from '@/components/common/AuthInput';
 
 export default function SignUpForm() {
     const router = useRouter();

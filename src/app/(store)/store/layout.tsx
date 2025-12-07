@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import { getGenres } from '@/queries/genre';
 import { getPlatforms } from '@/queries/platform';
-import Navbar from '@/components/Navbar';
-import Header from '@/components/Header';
+import Navbar from '@/components/store/Navbar';
+import Header from '@/components/store/Header';
 
 export default async function StoreLayout({
     children

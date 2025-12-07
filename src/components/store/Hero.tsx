@@ -6,7 +6,7 @@ import AutoPlay from 'embla-carousel-autoplay';
 import Icon from '@mdi/react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
-import Button from './Button';
+import Button from '@/components/common/Button';
 
 export default function Hero() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [AutoPlay()]);
@@ -33,8 +33,8 @@ export default function Hero() {
                                     Game Store
                                 </h1>
                                 <p className="m-2 text-xl">
-                                    All the games you&apos;re looking for in
-                                    one place!
+                                    All the games you&apos;re looking for in one
+                                    place!
                                 </p>
                             </div>
 
