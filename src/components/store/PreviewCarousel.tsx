@@ -1,6 +1,7 @@
 'use client';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
+import { EmblaCarouselType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import shimmer from '@/utils/shimmer';
 import Image from 'next/image';
@@ -8,6 +9,7 @@ import Icon from '@mdi/react';
 
 export default function PreviewCarousel({ images }: { images: string[] }) {
     const [emblaRef, emblaApi] = useEmblaCarousel();
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -16,6 +18,25 @@ export default function PreviewCarousel({ images }: { images: string[] }) {
     const scrollNext = useCallback(() => {
         if (emblaApi) emblaApi.scrollNext();
     }, [emblaApi]);
+
+    const scrollTo = useCallback(
+        (index: number) => {
+            if (emblaApi) emblaApi.scrollTo(index);
+        },
+        [emblaApi]
+    );
+
+    const updateSeletedIndex = useCallback((emblaApi: EmblaCarouselType) => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+    }, []);
+
+    useEffect(() => {
+        if (emblaApi) emblaApi.on('select', updateSeletedIndex);
+
+        return () => {
+            if (emblaApi) emblaApi.off('select', updateSeletedIndex);
+        };
+    }, [emblaApi, updateSeletedIndex]);
 
     return (
         <div className="embla relative">
@@ -66,6 +87,15 @@ export default function PreviewCarousel({ images }: { images: string[] }) {
                     color="#FFF"
                 />
             </button>
+            <div className="embla__dots -transate-x-1/2 absolute right-1/2 bottom-5 flex gap-3 rounded-lg bg-black px-4 py-3">
+                {images.map((image, index) => (
+                    <button
+                        onClick={() => scrollTo(index)}
+                        key={index}
+                        className={`h-[9px] w-[9px] rounded-full transition-transform duration-100 focus:outline-1 focus:outline-offset-2 focus:outline-[#999999] ${selectedIndex === index ? 'scale-130 bg-[#18b0ab]' : 'bg-[#999999]'}`}
+                    ></button>
+                ))}
+            </div>
         </div>
     );
 }
