@@ -1,4 +1,4 @@
-import { mdiLogin, mdiAccountPlus } from '@mdi/js';
+import { mdiLogin, mdiAccountPlus, mdiMonitorDashboard } from '@mdi/js';
 import { auth } from '@/auth';
 import Cart from '@/components/store/Cart';
 import SignOutButton from '@/components/common/SignOutButton';
@@ -30,6 +30,16 @@ export default async function Control() {
                 <>
                     <SignOutButton />
                     <VerticalDivider />
+                    {session.user.role === 'ADMIN' && (
+                        <>
+                            <IconButton
+                                tooltip="Dashboard"
+                                link="/dashboard"
+                                iconPath={mdiMonitorDashboard}
+                            />
+                            <VerticalDivider />
+                        </>
+                    )}
                     <Cart />
                 </>
             )}
