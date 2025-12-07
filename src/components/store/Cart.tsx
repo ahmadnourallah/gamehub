@@ -8,7 +8,7 @@ import { clearCart } from '@/queries/cart';
 import { useSession } from 'next-auth/react';
 import Slider from '@/components/common/Slider';
 import CartItem from '@/components/store/CartItem';
-import Icon from '@mdi/react';
+import IconButton from '@/components/common/IconButton';
 
 interface KeyboardEvent {
     key: string;
@@ -47,24 +47,12 @@ export default function Cart() {
 
     return (
         <>
-            <div
-                className="tooltip relative flex items-center"
-                data-tooltip="Cart"
-            >
-                <button
-                    onClick={() => setIsActive(!isActive)}
-                    className="scaleOnHover relative"
-                >
-                    <Icon
-                        path={mdiCartOutline}
-                        className="h-6 w-6 sm:h-8 sm:w-8"
-                        color="#FFFFFF"
-                    />
-                    <div className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-[100%] bg-[#18B0AB] p-2 text-center text-xs font-bold">
-                        {cart?.cartItems.length}
-                    </div>
-                </button>
-            </div>
+            <IconButton
+                iconPath={mdiCartOutline}
+                tooltip="Cart"
+                badge={cart?.cartItems.length.toString()}
+                onClick={() => setIsActive(!isActive)}
+            />
 
             <div
                 className={`${isActive ? 'block' : 'hidden'} fixed top-0 left-0 h-screen w-screen bg-[rgb(0,0,0,.5)]`}

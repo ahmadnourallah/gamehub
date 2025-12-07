@@ -1,9 +1,9 @@
 import { mdiLogin, mdiAccountPlus } from '@mdi/js';
 import { auth } from '@/auth';
-import Link from 'next/link';
-import Icon from '@mdi/react';
 import Cart from '@/components/store/Cart';
 import SignOutButton from '@/components/common/SignOutButton';
+import IconButton from '@/components/common/IconButton';
+import VerticalDivider from '@/components/common/VerticalDivider';
 
 export default async function Control() {
     const session = await auth();
@@ -12,32 +12,24 @@ export default async function Control() {
         <div className="flex items-center">
             {!session && (
                 <>
-                    <Link
-                        href="/login"
-                        data-tooltip="Login"
-                        className="tooltip relative mr-2 border-r-2 border-r-white pr-2"
-                    >
-                        <Icon
-                            className="scaleOnHover h-5 w-5 sm:h-6 sm:w-6"
-                            path={mdiLogin}
-                        />
-                    </Link>
-                    <Link
-                        href="/signup"
-                        data-tooltip="Sign up"
-                        className="tooltip relative pr-2"
-                    >
-                        <Icon
-                            className="scaleOnHover h-5 w-5 sm:h-6 sm:w-6"
-                            path={mdiAccountPlus}
-                        />
-                    </Link>
+                    <IconButton
+                        tooltip="Login"
+                        link="/login"
+                        iconPath={mdiLogin}
+                    />
+                    <VerticalDivider />
+                    <IconButton
+                        tooltip="Sign Up"
+                        link="/signup"
+                        iconPath={mdiAccountPlus}
+                    />
                 </>
             )}
 
             {session && (
                 <>
                     <SignOutButton />
+                    <VerticalDivider />
                     <Cart />
                 </>
             )}
