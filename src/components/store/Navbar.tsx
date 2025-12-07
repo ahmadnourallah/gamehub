@@ -22,9 +22,12 @@ function NavItem({
     const pathname = usePathname();
 
     return (
-        <Link href={link} className="group flex items-center gap-3">
+        <Link
+            href={link}
+            className="group flex items-center gap-3 focus:outline-none"
+        >
             <div
-                className={`rounded-md p-1.5 transition-colors duration-400 ${pathname === link ? 'bg-white text-black' : 'bg-[#202020] text-white group-hover:bg-white group-hover:text-black'}`}
+                className={`rounded-md p-1.5 transition-colors duration-400 group-focus:bg-white group-focus:text-black ${pathname === link ? 'bg-white text-black' : 'bg-[#202020] text-white group-hover:bg-white group-hover:text-black'}`}
             >
                 <Icon path={icon} size={1.3} />
             </div>
