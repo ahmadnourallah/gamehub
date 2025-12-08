@@ -79,7 +79,7 @@ export default function Carousel({
                 />
             </button>
             {emblaApi && enableDots && (
-                <div className="embla__dots -transate-x-1/2 absolute right-1/2 bottom-5 flex gap-3 rounded-lg bg-black px-4 py-3">
+                <div className="embla__dots absolute right-0 bottom-5 left-0 mx-auto flex w-fit gap-3 rounded-lg bg-black px-4 py-3">
                     {Array.from(emblaApi.slideNodes()).map((image, index) => (
                         <button
                             onClick={() => scrollTo(index)}
