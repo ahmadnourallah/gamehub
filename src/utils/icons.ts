@@ -14,7 +14,8 @@ import {
     mdiAppleIos,
     mdiAndroid,
     mdiGamepadVariant,
-    mdiConsole
+    mdiConsole,
+    mdiPenguin
 } from '@mdi/js';
 
 const Platforms = {
@@ -23,7 +24,8 @@ const Platforms = {
     xbox: mdiMicrosoftXbox,
     nintendo: mdiNintendoSwitch,
     ios: mdiAppleIos,
-    android: mdiAndroid
+    android: mdiAndroid,
+    linux: mdiPenguin
 };
 
 const Genres = {
