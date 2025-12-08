@@ -1,9 +1,11 @@
 import { getGame } from '@/queries/game';
 import { notFound } from 'next/navigation';
-import PreviewCarousel from '@/components/store/PreviewCarousel';
 import GameDetails from '@/components/store/GameDetails';
 import AddToCartButton from '@/components/store/AddToCartButton';
 import BackButton from '@/components/store/BackButton';
+import Carousel from '@/components/common/Carousel';
+import Image from 'next/image';
+import shimmer from '@/utils/shimmer';
 
 export default async function Game({
     params
@@ -24,7 +26,32 @@ export default async function Game({
                     <h1 className="mb-10 text-5xl font-bold">{game.title}</h1>
                 </div>
 
-                <PreviewCarousel images={game.images} />
+                <Carousel
+                    className="h-120 overflow-hidden rounded-2xl"
+                    enableDots={true}
+                >
+                    <div className="embla__container flex h-full">
+                        {game.images.map((image, i) => (
+                            <div
+                                key={i}
+                                className="embla__slide relative h-full min-w-0 flex-[0_0_100%]"
+                            >
+                                <Image
+                                    alt=""
+                                    placeholder={`data:image/svg+xml;base64,${shimmer()}`}
+                                    src={`${process.env.NEXT_PUBLIC_API}/${image}`}
+                                    width={0}
+                                    height={0}
+                                    className="h-full w-full"
+                                    sizes="100vw"
+                                    objectFit="cover"
+                                    objectPosition="center"
+                                    fill
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </Carousel>
 
                 <GameDetails game={game} />
 
