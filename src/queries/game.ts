@@ -39,10 +39,10 @@ export async function getGames(
     end: number = 10,
     search: string = '',
     orderBy: 'date' | 'title' = 'date',
-    order: 'asc' | 'desc' = 'asc'
+    order: 'asc' | 'desc' = 'desc'
 ): Promise<GameType[]> {
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/games?start=${start}&end=${end}&search=${search}&orderby=${orderBy}&order=${order}`
+        `${process.env.NEXT_PUBLIC_API}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );
 
     if (!response.ok) throw new Error("Server isn't responding!");
