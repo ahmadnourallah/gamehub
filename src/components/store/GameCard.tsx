@@ -1,6 +1,7 @@
 'use client';
 import { getPlatformIcon } from '@/utils/icons';
 import { PlatformType } from '@/queries/platform';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import shimmer from '@/utils/shimmer';
 import Image from 'next/image';
@@ -22,11 +23,18 @@ export default function GameCard({
     platforms: PlatformType[];
     className?: string;
 }) {
+    const router = useRouter();
+
     return (
         <div
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ')
+                    router.push(`/store/games/${id}`);
+            }}
+            tabIndex={0}
             className={`flex max-w-[600px] flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
         >
-            <Link href={`/store/games/${id}`}>
+            <Link href={`/store/games/${id}`} tabIndex={-1}>
                 <Image
                     className="h-auto w-full rounded-t-2xl"
                     placeholder={`data:image/svg+xml;base64,${shimmer()}`}
@@ -58,7 +66,7 @@ export default function GameCard({
                     ))}
                 </div>
 
-                <Link href={`/store/games/${id}`}>
+                <Link href={`/store/games/${id}`} tabIndex={-1}>
                     <h3
                         title={title}
                         className="line-clamp-2 text-2xl font-bold overflow-ellipsis"

@@ -43,7 +43,8 @@ export default function AddToCartButton({
         <button
             className={`${isPending ? 'opacity-40' : ''} ${className}`}
             disabled={isPending || isAdded}
-            onClick={() => {
+            onClick={(e) => {
+                e.stopPropagation();
                 if (session) mutate({ token: session.accessToken, gameId });
                 else router.push('/login');
             }}
