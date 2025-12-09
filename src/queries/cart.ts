@@ -1,3 +1,4 @@
+'use server';
 import { ResponseType } from './game';
 
 export interface CartItemType {

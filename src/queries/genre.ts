@@ -1,3 +1,4 @@
+'use server';
 import type { GameType, ResponseType } from './game';
 
 export interface GenreType {

@@ -1,3 +1,4 @@
+'use server';
 import { GenreType } from './genre';
 import { PlatformType } from './platform';
 import { PublisherType } from './publisher';
@@ -14,7 +15,7 @@ interface FailResponseType {
 
 interface SuccessResponse<DataKey extends string, DataType> {
     status: 'success';
-    data: ResponseDataType<DataKey, DataType>;
+    data: ResponseDataType<DataKey, DataType> & { total?: number };
 }
 
 export type ResponseType<DataKey extends string, DataType> =
@@ -40,16 +41,20 @@ export async function getGames(
     search: string = '',
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'desc'
-): Promise<GameType[]> {
+): Promise<ResponseType<'games', GameType[]>> {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_API}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );
 
-    if (!response.ok) throw new Error("Server isn't responding!");
+    // if (!response.ok) throw new Error("Server isn't responding!");
 
-    const data = await response.json();
+    // const data = await response.json();
 
-    return data.data.games;
+    // return data.data.games;
+    if (!response.ok && response.status !== 404)
+        throw new Error("Server isn't responding!");
+
+    return await response.json();
 }
 
 export async function getGame(

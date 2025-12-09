@@ -2,7 +2,8 @@ import GameList from '@/components/store/GameList';
 import { getGames } from '@/queries/game';
 
 export default async function Store() {
-    const games = await getGames();
+    const gameResponse = await getGames();
 
-    return <GameList games={games} />;
+    if (gameResponse.status === 'success')
+        return <GameList games={gameResponse.data.games} />;
 }
