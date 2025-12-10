@@ -32,7 +32,7 @@ export default function GameCard({
                     router.push(`/store/games/${id}`);
             }}
             tabIndex={0}
-            className={`flex max-w-[600px] flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
+            className={`flex h-full max-w-[600px] flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
         >
             <Link href={`/store/games/${id}`} tabIndex={-1}>
                 <Image

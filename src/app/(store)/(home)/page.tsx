@@ -32,12 +32,12 @@ export default async function Home() {
                         className="overflow-hidden"
                         options={{ dragFree: true }}
                     >
-                        <div className="embla__container flex h-full *:mx-2 *:flex-[0_0_50%] sm:*:flex-[0_0_25%]">
+                        <div className="embla__container flex h-max *:mx-2 *:flex-[0_0_50%] sm:*:flex-[0_0_25%]">
                             {gameResponse.status === 'success' &&
                                 gameResponse.data.games.map((game, i) => (
                                     <div
                                         key={i}
-                                        className="embla__slide min-w-0"
+                                        className="embla__slide h-revert min-w-0"
                                     >
                                         <GameCard
                                             id={game.id}
