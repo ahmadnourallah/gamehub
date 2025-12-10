@@ -12,7 +12,7 @@ export default async function GameList({
     total: number;
 }) {
     return (
-        <>
+        <div className="mb-8">
             <div className="grid h-max grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
                 {games.map((game) => (
                     <GameCard
@@ -27,6 +27,6 @@ export default async function GameList({
                 ))}
             </div>
             <Pagination pageSize={pageSize} total={total} />
-        </>
+        </div>
     );
 }
