@@ -1,18 +1,30 @@
 import { getPlatformGames } from '@/queries/platform';
 import { notFound } from 'next/navigation';
+import { paginate } from '@/utils/misc';
 import GameList from '@/components/store/GameList';
 
 export default async function PlatformGames({
-    params
+    params,
+    searchParams
 }: {
     params: Promise<{ name: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const { name } = await params;
-    const response = await getPlatformGames(name);
+    const sParams = await searchParams;
+    const page = sParams.page ? parseInt(sParams.page as string) : 1;
+    const [start, end] = paginate(page, 9);
+
+    const response = await getPlatformGames(name, start, end);
 
     if (response.status === 'fail') notFound();
     else {
-        const games = response.data.games;
-        return <GameList games={games} />;
+        return (
+            <GameList
+                pageSize={9}
+                total={response.data.total || 0}
+                games={response.data.games}
+            />
+        );
     }
 }
