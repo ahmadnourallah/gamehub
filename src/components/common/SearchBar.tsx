@@ -17,7 +17,7 @@ export default function SearchBar() {
     const {
         isLoading,
         isSuccess,
-        data: games
+        data: response
     } = useQuery({
         queryKey: ['search', search],
         queryFn: () => getGames(0, 3, search),
@@ -64,8 +64,9 @@ export default function SearchBar() {
                     className={`absolute top-12 h-70 w-full overflow-y-auto rounded-md bg-white text-black ${isActive ? 'block' : 'hidden'}`}
                 >
                     {isSuccess &&
-                        games.length > 0 &&
-                        games.map((game) => (
+                        response.status === 'success' &&
+                        response.data.games.length > 0 &&
+                        response.data.games.map((game) => (
                             <Link
                                 onClick={close}
                                 href={`/store/games/${game.id}`}
@@ -86,11 +87,13 @@ export default function SearchBar() {
                                 </span>
                             </Link>
                         ))}
-                    {isSuccess && games.length === 0 && (
-                        <div className="flex h-full items-center justify-center">
-                            No results
-                        </div>
-                    )}
+                    {isSuccess &&
+                        response.status === 'success' &&
+                        response.data.games.length === 0 && (
+                            <div className="flex h-full items-center justify-center">
+                                No results
+                            </div>
+                        )}
                     {isLoading && (
                         <div className="flex h-full items-center justify-center">
                             <Spinner size="50px" />
