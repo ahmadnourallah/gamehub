@@ -13,13 +13,17 @@ interface FailResponseType {
     data: { [k: string]: string }[];
 }
 
-interface SuccessResponse<DataKey extends string, DataType> {
+export interface SuccessResponse<DataKey extends string, DataType> {
     status: 'success';
     data: ResponseDataType<DataKey, DataType> & { total?: number };
 }
 
 export type ResponseType<DataKey extends string, DataType> =
     | SuccessResponse<DataKey, DataType>
+    | FailResponseType;
+
+export type DeleteResponseType =
+    | { status: 'success'; data: null }
     | FailResponseType;
 
 export interface GameType {
@@ -46,11 +50,6 @@ export async function getGames(
         `${process.env.NEXT_PUBLIC_API}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );
 
-    // if (!response.ok) throw new Error("Server isn't responding!");
-
-    // const data = await response.json();
-
-    // return data.data.games;
     if (!response.ok && response.status !== 404)
         throw new Error("Server isn't responding!");
 
@@ -62,6 +61,22 @@ export async function getGame(
 ): Promise<ResponseType<'game', GameType>> {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/games/${id}`);
 
+    if (!response.ok && response.status !== 404)
+        throw new Error("Server isn't responding!");
+
+    return await response.json();
+}
+
+export async function deleteGame(
+    id: string,
+    token: string
+): Promise<DeleteResponseType> {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/games/${id}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     if (!response.ok && response.status !== 404)
         throw new Error("Server isn't responding!");
 
