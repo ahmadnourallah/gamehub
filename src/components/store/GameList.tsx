@@ -1,15 +1,17 @@
 import { GameType } from '@/queries/game';
-import GameCard from './GameCard';
-import Pagination from '../common/Pagination';
+import GameCard from '@/components/store/GameCard';
+import Pagination from '@/components/common/Pagination';
 
 export default async function GameList({
     games,
     pageSize,
-    total
+    total,
+    currentPage
 }: {
     games: GameType[];
     pageSize?: number;
     total: number;
+    currentPage: number;
 }) {
     return (
         <div className="mb-8">
@@ -26,7 +28,11 @@ export default async function GameList({
                     />
                 ))}
             </div>
-            <Pagination pageSize={pageSize} total={total} />
+            <Pagination
+                currentPage={currentPage}
+                pageSize={pageSize}
+                total={total}
+            />
         </div>
     );
 }

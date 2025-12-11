@@ -11,10 +11,7 @@ export default async function PlatformGames({
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const { name } = await params;
-    const sParams = await searchParams;
-    const page = sParams.page ? parseInt(sParams.page as string) : 1;
-    const [start, end] = paginate(page, 9);
-
+    const [start, end, currentPage] = paginate((await searchParams).page, 9);
     const response = await getPlatformGames(name, start, end);
 
     if (response.status === 'fail') notFound();
@@ -24,6 +21,7 @@ export default async function PlatformGames({
                 <h1 className="mb-8 text-6xl font-bold">{name} Games</h1>
 
                 <GameList
+                    currentPage={currentPage}
                     pageSize={9}
                     total={response.data.total || 0}
                     games={response.data.games}
