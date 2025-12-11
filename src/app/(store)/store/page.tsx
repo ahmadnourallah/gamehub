@@ -14,10 +14,13 @@ export default async function Store({
 
     if (gameResponse.status === 'success')
         return (
-            <GameList
-                pageSize={9}
-                total={gameResponse.data.total || 0}
-                games={gameResponse.data.games}
-            />
+            <>
+                <h1 className="mb-8 text-6xl font-bold">Latest Games</h1>
+                <GameList
+                    pageSize={9}
+                    total={gameResponse.data.total || 0}
+                    games={gameResponse.data.games}
+                />
+            </>
         );
 }

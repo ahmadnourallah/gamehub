@@ -20,11 +20,15 @@ export default async function GenreGames({
     if (response.status === 'fail') notFound();
     else {
         return (
-            <GameList
-                pageSize={9}
-                total={response.data.total || 0}
-                games={response.data.games}
-            />
+            <>
+                <h1 className="mb-8 text-6xl font-bold">{name} Games</h1>
+
+                <GameList
+                    pageSize={9}
+                    total={response.data.total || 0}
+                    games={response.data.games}
+                />
+            </>
         );
     }
 }
