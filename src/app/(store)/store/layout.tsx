@@ -15,12 +15,12 @@ export default async function StoreLayout({
     return (
         <div className="flex h-screen flex-col overflow-hidden">
             <Header />
-            <div className="relative container mx-auto flex overflow-hidden px-4 pt-4">
+            <div className="relative container mx-auto flex h-full overflow-hidden px-4 pt-4">
                 <Navbar
                     genreResponse={genreResponse}
                     platformResponse={platformResponse}
                 />
-                <div className="scrollbar-hidden h-full w-full overflow-x-auto px-6 pt-4">
+                <div className="scrollbar-hidden relative h-full w-full overflow-x-auto px-6 pt-4">
                     {children}
                 </div>
             </div>
