@@ -9,6 +9,8 @@ import { useSession } from 'next-auth/react';
 import Slider from '@/components/common/Slider';
 import CartItem from '@/components/store/CartItem';
 import IconButton from '@/components/common/IconButton';
+import toast from 'react-hot-toast';
+import { shimmer } from '@/lib/utils';
 
 interface KeyboardEvent {
     key: string;
@@ -21,11 +23,23 @@ export default function Cart() {
     const [isActive, setIsActive] = useState(false);
     const ref = useOutsideClick(close);
 
-    const { mutate } = useMutation({
+    const { mutate, isError, isSuccess, isPending } = useMutation({
         mutationFn: async ({ token }: { token: string }) => {
-            return await clearCart(token);
+            const response = await clearCart(token);
+            if (response.status === 'fail')
+                return Promise.reject(response.data);
+            else return response.data;
         }
     });
+
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success('Cart has been cleared successfully!');
+            dispatch({ type: 'CLEAR' });
+        }
+
+        if (isError) toast.error('Cart cannot be cleared!');
+    }, [isError, isSuccess, dispatch]);
 
     useEffect(() => {
         const handleExit = (evt: KeyboardEvent) =>
@@ -71,7 +85,6 @@ export default function Cart() {
                     <button
                         onClick={() => {
                             mutate({ token: session?.accessToken as string });
-                            dispatch({ type: 'CLEAR' });
                         }}
                         className="text-[rgb(153,153,153)]"
                     >
@@ -79,9 +92,10 @@ export default function Cart() {
                     </button>
                 </div>
 
-                <div className="scrollbar-hidden flex h-full flex-col gap-3 overflow-y-auto">
+                <div className="scrollbar-hidden relative flex h-full flex-col gap-3 overflow-y-auto">
                     {cart?.cartItems.map((item, index) => (
                         <CartItem
+                            isDisabled={isPending}
                             key={index}
                             token={session?.accessToken as string}
                             gameId={item.gameId}

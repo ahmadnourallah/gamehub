@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useContext, useEffect } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
 import { useSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
 export default function AddToCartButton({
     gameId,
@@ -20,7 +21,7 @@ export default function AddToCartButton({
         ? true
         : false;
 
-    const { isPending, isError, isSuccess, error, data, mutate } = useMutation({
+    const { isPending, isError, isSuccess, data, mutate } = useMutation({
         mutationFn: async ({
             token,
             gameId
@@ -28,16 +29,21 @@ export default function AddToCartButton({
             token: string;
             gameId: number;
         }) => {
-            return await addToCart(token, gameId);
+            const response = await addToCart(token, gameId);
+            if (response.status === 'fail')
+                return Promise.reject(response.data);
+            else return response;
         }
     });
 
-    if (isError) console.log(error);
-
     useEffect(() => {
-        if (isSuccess && data.status === 'success')
+        if (isSuccess && data.status === 'success') {
+            toast.success('Item added successfully!');
             dispatch({ type: 'ADD', payload: data.data.cart });
-    }, [isSuccess, data, dispatch]);
+        }
+
+        if (isError) toast.error('Item cannot be added!');
+    }, [isSuccess, isError, data, dispatch]);
 
     return (
         <button

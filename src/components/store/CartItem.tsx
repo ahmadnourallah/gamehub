@@ -2,23 +2,26 @@ import { getGame } from '@/actions/game';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { mdiCloseCircle } from '@mdi/js';
 import { deleteCartItem } from '@/actions/cart';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
 import { shimmer } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '@mdi/react';
+import toast from 'react-hot-toast';
 
 export default function CartItem({
     gameId,
     price,
     token,
-    close
+    close,
+    isDisabled = false
 }: {
     gameId: number;
     price: number;
     token: string;
     close: VoidFunction;
+    isDisabled: boolean;
 }) {
     const { dispatch } = useContext(CartContext);
 
@@ -35,11 +38,24 @@ export default function CartItem({
             token: string;
             gameId: number;
         }) => {
-            return await deleteCartItem(token, gameId);
+            const response = await deleteCartItem(token, gameId);
+            if (response.status === 'fail')
+                return Promise.reject(response.data);
+            else return response;
         }
     });
 
-    if (gameQuery.isPending) {
+    useEffect(() => {
+        if (deleteMutation.isSuccess) {
+            toast.success('Item deleted successfully!');
+            dispatch({ type: 'DELETE', payload: gameId });
+        }
+
+        if (deleteMutation.isError) toast.error('Item could not be deleted!');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [deleteMutation.isSuccess, deleteMutation.isError, dispatch]);
+
+    if (isDisabled || gameQuery.isPending || deleteMutation.isPending) {
         return (
             <div className="h-34.25 rounded-lg bg-[rgb(38,38,38)] text-white">
                 <Image
@@ -62,7 +78,6 @@ export default function CartItem({
                 <button
                     onClick={() => {
                         deleteMutation.mutate({ token, gameId });
-                        dispatch({ type: 'DELETE', payload: gameId });
                     }}
                     className="self-end"
                 >
