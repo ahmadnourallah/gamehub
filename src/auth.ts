@@ -1,5 +1,5 @@
 import NextAuth, { DefaultSession, Session, User } from 'next-auth';
-import { ConnectionError, WrongCredentialsError } from '@/utils/errors';
+import { ConnectionError, WrongCredentialsError } from '@/lib/errors';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { JWT } from 'next-auth/jwt';
 

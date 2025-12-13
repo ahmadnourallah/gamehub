@@ -1,5 +1,5 @@
 'use server';
-import type { ResponseType, GameType, DeleteResponseType } from '@/utils/types';
+import type { ResponseType, GameType, DeleteResponseType } from '@/lib/types';
 
 export async function getGames(
     start: number = 0,

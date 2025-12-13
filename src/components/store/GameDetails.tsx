@@ -1,5 +1,5 @@
 'use client';
-import type { GameType } from '@/utils/types';
+import type { GameType } from '@/lib/types';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { mdiChevronUp, mdiChevronDown } from '@mdi/js';

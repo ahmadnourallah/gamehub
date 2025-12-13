@@ -1,4 +1,4 @@
-import type { ResponseType, UserType } from '@/utils/types';
+import type { ResponseType, UserType } from '@/lib/types';
 
 export async function createUser(
     name: string,

@@ -5,7 +5,7 @@ import AddToCartButton from '@/components/store/AddToCartButton';
 import BackButton from '@/components/store/BackButton';
 import Carousel from '@/components/common/Carousel';
 import Image from 'next/image';
-import shimmer from '@/utils/shimmer';
+import shimmer from '@/lib/shimmer';
 
 export default async function Game({
     params

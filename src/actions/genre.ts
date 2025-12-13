@@ -1,5 +1,5 @@
 'use server';
-import type { ResponseType, GameType, GenreType } from '@/utils/types';
+import type { ResponseType, GameType, GenreType } from '@/lib/types';
 
 export async function getGenres(): Promise<
     ResponseType<'genres', GenreType[]>

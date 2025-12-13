@@ -1,5 +1,5 @@
 'use client';
-import type { CartType } from '@/utils/types';
+import type { CartType } from '@/lib/types';
 import { Dispatch, ReactNode, createContext, useReducer } from 'react';
 
 interface AddActionType {

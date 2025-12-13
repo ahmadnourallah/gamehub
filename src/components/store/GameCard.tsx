@@ -1,9 +1,9 @@
 'use client';
-import { getPlatformIcon } from '@/utils/icons';
-import type { PlatformType } from '@/utils/types';
+import { getPlatformIcon } from '@/lib/icons';
+import type { PlatformType } from '@/lib/types';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import shimmer from '@/utils/shimmer';
+import shimmer from '@/lib/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
 import AddToCartButton from '@/components/store/AddToCartButton';

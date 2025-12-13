@@ -5,7 +5,7 @@ import { deleteCartItem } from '@/actions/cart';
 import { useContext } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
 import Link from 'next/link';
-import shimmer from '@/utils/shimmer';
+import shimmer from '@/lib/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
 

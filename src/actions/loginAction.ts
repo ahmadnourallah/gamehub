@@ -1,6 +1,6 @@
 'use server';
 import { signIn } from '@/auth';
-import { WrongCredentialsError } from '@/utils/errors';
+import { WrongCredentialsError } from '@/lib/errors';
 
 export default async function loginAction(formData: FormData) {
     const email = formData.get('email');

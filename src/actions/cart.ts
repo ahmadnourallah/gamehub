@@ -1,5 +1,5 @@
 'use server';
-import type { ResponseType, CartType } from '@/utils/types';
+import type { ResponseType, CartType } from '@/lib/types';
 
 export async function addToCart(
     token: string,

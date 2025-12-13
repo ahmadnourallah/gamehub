@@ -16,7 +16,7 @@ import type {
     GameType,
     GenreType,
     PlatformType
-} from '@/utils/types';
+} from '@/lib/types';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';

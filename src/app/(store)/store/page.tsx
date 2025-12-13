@@ -1,5 +1,5 @@
 import { getGames } from '@/actions/game';
-import { paginate } from '@/utils/misc';
+import { paginate } from '@/lib/misc';
 import GameList from '@/components/store/GameList';
 
 export default async function Store({

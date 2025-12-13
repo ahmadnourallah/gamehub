@@ -1,5 +1,5 @@
 import { deleteGame, getGames } from '@/actions/game';
-import type { GameType } from '@/utils/types';
+import type { GameType } from '@/lib/types';
 import { MRT_ColumnDef } from 'mantine-react-table';
 import Button from '@/components/common/Button';
 import DashTable from '@/components/dashboard/DashTable';

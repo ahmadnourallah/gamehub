@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { mdiCartOutline } from '@mdi/js';
 import { CartContext } from '@/context/CartContextProvider';
-import { useOutsideClick } from '@/utils/hooks';
+import { useOutsideClick } from '@/lib/hooks';
 import { useMutation } from '@tanstack/react-query';
 import { clearCart } from '@/actions/cart';
 import { useSession } from 'next-auth/react';

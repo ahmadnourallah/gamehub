@@ -1,7 +1,7 @@
 'use client';
 import { mdiClose, mdiFire, mdiMenu } from '@mdi/js';
-import { ResponseType, GenreType, PlatformType } from '@/utils/types';
-import { getGenreIcon, getPlatformIcon } from '@/utils/icons';
+import { ResponseType, GenreType, PlatformType } from '@/lib/types';
+import { getGenreIcon, getPlatformIcon } from '@/lib/icons';
 import { ReactNode, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Slider from '@/components/common/Slider';

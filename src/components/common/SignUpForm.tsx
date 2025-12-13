@@ -2,7 +2,7 @@
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
-import { validateEmail, validatePassword } from '@/utils/validation';
+import { validateEmail, validatePassword } from '@/lib/validation';
 import { createUser } from '@/actions/user';
 import Button from '@/components/common/Button';
 import Link from 'next/link';

@@ -1,5 +1,5 @@
 'use server';
-import type { ResponseType, GameType, PlatformType } from '@/utils/types';
+import type { ResponseType, GameType, PlatformType } from '@/lib/types';
 
 export async function getPlatforms(): Promise<
     ResponseType<'platforms', PlatformType[]>
