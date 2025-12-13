@@ -17,6 +17,7 @@ import {
     mdiConsole,
     mdiPenguin
 } from '@mdi/js';
+import type { FailureResponseType } from '@/lib/types';
 
 const PlatformIcons = {
     pc: mdiMicrosoftWindows,
@@ -86,4 +87,23 @@ export function paginate(
     const end = (page - 1) * pageSize + pageSize;
 
     return [start, end, page];
+}
+
+export async function fetchAPI(
+    resource: string,
+    options?: RequestInit,
+    API: string | undefined = process.env.NEXT_PUBLIC_API
+) {
+    try {
+        const response = await fetch(`${API}${resource}`, options);
+
+        return response.json();
+    } catch (error) {
+        if (error instanceof Error)
+            return {
+                status: 'fail',
+                code: 503,
+                data: { network: error.message }
+            } as FailureResponseType;
+    }
 }
