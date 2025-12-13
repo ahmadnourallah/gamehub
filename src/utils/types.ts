@@ -21,23 +21,15 @@ export type DeleteResponseType =
     | { status: 'success'; data: null }
     | FailResponseType;
 
-export interface GenreType {
+export interface CategoryType {
     id: number;
     name: string;
     createdAt: string;
 }
 
-export interface PlatformType {
-    id: number;
-    name: string;
-    createdAt: string;
-}
-
-export interface PublisherType {
-    id: number;
-    name: string;
-    createdAt: string;
-}
+export type GenreType = CategoryType;
+export type PlatformType = CategoryType;
+export type PublisherType = CategoryType;
 
 export interface UserType {
     id: number;
