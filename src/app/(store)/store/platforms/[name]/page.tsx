@@ -14,7 +14,8 @@ export default async function PlatformGames({
     const [start, end, currentPage] = paginate((await searchParams).page, 9);
     const response = await getPlatformGames(name, start, end);
 
-    if (response.status === 'fail') notFound();
+    if (response.status === 'fail' && response.code === 404) notFound();
+    else if (response.status === 'fail') throw new Error();
     else {
         return (
             <>

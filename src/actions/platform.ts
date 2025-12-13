@@ -1,15 +1,11 @@
 'use server';
 import type { QueryAllResponseType, GameType, PlatformType } from '@/lib/types';
+import { fetchAPI } from '@/lib/utils';
 
 export async function getPlatforms(): Promise<
     QueryAllResponseType<'platforms', PlatformType[]>
 > {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/platforms`);
-
-    if (!response.ok && response.status !== 404)
-        throw new Error("Server isn't responding!");
-
-    return await response.json();
+    return await fetchAPI('/platforms');
 }
 
 export async function getPlatformGames(
@@ -20,12 +16,7 @@ export async function getPlatformGames(
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'desc'
 ): Promise<QueryAllResponseType<'games', GameType[]>> {
-    const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/platforms/${platformName}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
+    return await fetchAPI(
+        `/platforms/${platformName}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );
-
-    if (!response.ok && response.status !== 404)
-        throw new Error("Server isn't responding!");
-
-    return await response.json();
 }
