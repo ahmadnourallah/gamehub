@@ -1,20 +1,5 @@
 'use server';
-import { ResponseType } from './game';
-
-export interface CartItemType {
-    cartId: number;
-    gameId: number;
-    quantity: number;
-    price: number;
-}
-
-export interface CartType {
-    id: number;
-    userId: number;
-    createdAt: string;
-    updatedAt: string;
-    cartItems: CartItemType[];
-}
+import type { ResponseType, CartType } from '@/utils/types';
 
 export async function addToCart(
     token: string,

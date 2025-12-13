@@ -1,12 +1,4 @@
-import { ResponseType } from './game';
-
-export interface UserType {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    token: string;
-}
+import type { ResponseType, UserType } from '@/utils/types';
 
 export async function createUser(
     name: string,

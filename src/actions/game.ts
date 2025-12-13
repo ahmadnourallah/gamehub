@@ -1,43 +1,5 @@
 'use server';
-import { GenreType } from './genre';
-import { PlatformType } from './platform';
-import { PublisherType } from './publisher';
-
-type ResponseDataType<DataKey extends string, DataType> = {
-    [k in DataKey]: DataType;
-};
-
-interface FailResponseType {
-    status: 'fail';
-    code: number;
-    data: { [k: string]: string }[];
-}
-
-export interface SuccessResponse<DataKey extends string, DataType> {
-    status: 'success';
-    data: ResponseDataType<DataKey, DataType> & { total?: number };
-}
-
-export type ResponseType<DataKey extends string, DataType> =
-    | SuccessResponse<DataKey, DataType>
-    | FailResponseType;
-
-export type DeleteResponseType =
-    | { status: 'success'; data: null }
-    | FailResponseType;
-
-export interface GameType {
-    id: number;
-    title: string;
-    images: string[];
-    description: string;
-    price: number;
-    createdAt: string;
-    updatedAt: string;
-    genres: GenreType[];
-    platforms: PlatformType[];
-    publishers: PublisherType[];
-}
+import type { ResponseType, GameType, DeleteResponseType } from '@/utils/types';
 
 export async function getGames(
     start: number = 0,

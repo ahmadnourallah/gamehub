@@ -1,8 +1,6 @@
 'use client';
 import { mdiClose, mdiFire, mdiMenu } from '@mdi/js';
-import { ResponseType } from '@/actions/game';
-import { GenreType } from '@/actions/genre';
-import { PlatformType } from '@/actions/platform';
+import { ResponseType, GenreType, PlatformType } from '@/utils/types';
 import { getGenreIcon, getPlatformIcon } from '@/utils/icons';
 import { ReactNode, useState } from 'react';
 import { usePathname } from 'next/navigation';

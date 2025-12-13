@@ -10,9 +10,13 @@ import {
 import { ActionIcon, MantineProvider, Tooltip } from '@mantine/core';
 import { IconRefresh } from '@tabler/icons-react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { DeleteResponseType, GameType, ResponseType } from '@/actions/game';
-import { GenreType } from '@/actions/genre';
-import { PlatformType } from '@/actions/platform';
+import type {
+    ResponseType,
+    DeleteResponseType,
+    GameType,
+    GenreType,
+    PlatformType
+} from '@/utils/types';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';

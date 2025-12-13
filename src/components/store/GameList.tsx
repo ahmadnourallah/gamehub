@@ -1,4 +1,4 @@
-import { GameType } from '@/actions/game';
+import type { GameType } from '@/utils/types';
 import GameCard from '@/components/store/GameCard';
 import Pagination from '@/components/common/Pagination';
 
