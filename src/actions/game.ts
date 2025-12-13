@@ -5,6 +5,7 @@ import type {
     GameType,
     DeleteResponseType
 } from '@/lib/types';
+import { fetchAPI } from '@/lib/utils';
 
 export async function getGames(
     start: number = 0,
@@ -13,39 +14,25 @@ export async function getGames(
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'desc'
 ): Promise<QueryAllResponseType<'games', GameType[]>> {
-    const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
+    return await fetchAPI(
+        `/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );
-
-    if (!response.ok && response.status !== 404)
-        throw new Error("Server isn't responding!");
-
-    return await response.json();
 }
 
 export async function getGame(
     id: number
 ): Promise<QueryResponseType<'game', GameType>> {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/games/${id}`);
-
-    if (!response.ok && response.status !== 404)
-        throw new Error("Server isn't responding!");
-
-    return await response.json();
+    return await fetchAPI(`/games/${id}`);
 }
 
 export async function deleteGame(
     id: string,
     token: string
 ): Promise<DeleteResponseType> {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/games/${id}`, {
+    return await fetchAPI(`/games/${id}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`
         }
     });
-    if (!response.ok && response.status !== 404)
-        throw new Error("Server isn't responding!");
-
-    return await response.json();
 }

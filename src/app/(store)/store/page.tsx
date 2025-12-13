@@ -10,6 +10,9 @@ export default async function Store({
     const [start, end, currentPage] = paginate((await searchParams).page, 9);
     const gameResponse = await getGames(start, end);
 
+    if (gameResponse.status === 'fail' && gameResponse.code === 503)
+        throw new Error();
+
     if (gameResponse.status === 'success')
         return (
             <>
