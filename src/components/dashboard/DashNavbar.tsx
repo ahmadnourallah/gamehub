@@ -54,7 +54,7 @@ export default function DashNavbar() {
                 />
             </button>
             <Slider
-                className="bg-background h-full overflow-visible sm:!visible sm:static sm:!transform-none sm:p-0"
+                className="bg-background h-full overflow-visible sm:visible! sm:static sm:transform-none! sm:p-0"
                 isActive={isActive}
             >
                 <nav className="scrollbar-hidden h-screen overflow-y-auto bg-[rgb(32,32,32)]">

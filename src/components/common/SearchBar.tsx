@@ -47,14 +47,14 @@ export default function SearchBar() {
     const ref = useOutsideClick(close);
 
     return (
-        <div ref={scope} className="relative not-sm:!w-full sm:w-1/4">
+        <div ref={scope} className="relative not-sm:w-full! sm:w-1/4">
             <div ref={ref}>
                 <input
                     onFocus={open}
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search games..."
-                    className="h-[50%] !w-full rounded-md bg-white py-2 pr-11 pl-3 text-black after:content-none focus:outline-0"
+                    className="h-[50%] w-full! rounded-md bg-white py-2 pr-11 pl-3 text-black after:content-none focus:outline-0"
                 />
                 <button className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer">
                     <Icon path={mdiMagnify} size={1} color="#000" />

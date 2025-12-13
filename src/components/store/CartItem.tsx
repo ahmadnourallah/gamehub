@@ -41,7 +41,7 @@ export default function CartItem({
 
     if (gameQuery.isPending) {
         return (
-            <div className="h-[137px] rounded-lg bg-[rgb(38,38,38)] text-white">
+            <div className="h-34.25 rounded-lg bg-[rgb(38,38,38)] text-white">
                 <Image
                     className="h-full w-full rounded-lg"
                     src={`data:image/svg+xml;base64,${shimmer()}`}
