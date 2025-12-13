@@ -25,9 +25,10 @@ export default function SignUpForm() {
             toast.success('User created successfully!');
             router.push('/login');
         } else {
-            toast.error(
-                response.data.map((err) => Object.values(err)[0]).join('\n')
-            );
+            if (Array.isArray(response.data))
+                toast.error(
+                    response.data.map((err) => Object.values(err)[0]).join('\n')
+                );
         }
     };
 

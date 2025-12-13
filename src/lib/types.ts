@@ -2,10 +2,10 @@ type ResponseDataType<DataKey extends string, DataType> = {
     [k in DataKey]: DataType;
 };
 
-interface FailureResponseType {
+export interface FailureResponseType {
     status: 'fail';
     code: number;
-    data: { [k: string]: string }[];
+    data: { [k: string]: string } | { [k: string]: string }[];
 }
 
 export interface SuccessResponseType<Data extends object | null> {
