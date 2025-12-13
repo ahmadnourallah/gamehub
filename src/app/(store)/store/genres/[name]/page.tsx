@@ -1,6 +1,6 @@
 import { getGenreGames } from '@/actions/genre';
 import { notFound } from 'next/navigation';
-import { paginate } from '@/lib/misc';
+import { paginate } from '@/lib/utils';
 import GameList from '@/components/store/GameList';
 
 export default async function GenreGames({

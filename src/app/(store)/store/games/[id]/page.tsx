@@ -1,11 +1,11 @@
 import { getGame } from '@/actions/game';
 import { notFound } from 'next/navigation';
+import { shimmer } from '@/lib/utils';
 import GameDetails from '@/components/store/GameDetails';
 import AddToCartButton from '@/components/store/AddToCartButton';
 import BackButton from '@/components/store/BackButton';
 import Carousel from '@/components/common/Carousel';
 import Image from 'next/image';
-import shimmer from '@/lib/shimmer';
 
 export default async function Game({
     params

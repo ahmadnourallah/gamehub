@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getGames } from '@/actions/game';
 import { useState } from 'react';
 import { useOutsideClick } from '@/lib/hooks';
-import shimmer from '@/lib/shimmer';
+import { shimmer } from '@/lib/utils';
 import Image from 'next/image';
 import Icon from '@mdi/react';
 import Spinner from './Spinner';

@@ -4,8 +4,8 @@ import { mdiCloseCircle } from '@mdi/js';
 import { deleteCartItem } from '@/actions/cart';
 import { useContext } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
+import { shimmer } from '@/lib/utils';
 import Link from 'next/link';
-import shimmer from '@/lib/shimmer';
 import Image from 'next/image';
 import Icon from '@mdi/react';
 
