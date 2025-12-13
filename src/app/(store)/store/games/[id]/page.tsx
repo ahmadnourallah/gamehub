@@ -16,9 +16,8 @@ export default async function Game({
     const response = await getGame(id);
 
     if (response.status === 'fail' && response.code === 404) notFound();
-    else if (response.status === 'fail' && response.code === 503)
-        throw new Error();
-    else if (response.status === 'success') {
+    else if (response.status === 'fail') throw new Error();
+    else {
         const game = response.data.game;
 
         return (

@@ -1,15 +1,11 @@
 'use server';
 import type { QueryAllResponseType, GameType, GenreType } from '@/lib/types';
+import { fetchAPI } from '@/lib/utils';
 
 export async function getGenres(): Promise<
     QueryAllResponseType<'genres', GenreType[]>
 > {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/genres`);
-
-    if (!response.ok && response.status !== 404)
-        throw new Error("Server isn't responding!");
-
-    return await response.json();
+    return await fetchAPI('/genres');
 }
 
 export async function getGenreGames(
@@ -20,12 +16,7 @@ export async function getGenreGames(
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'desc'
 ): Promise<QueryAllResponseType<'games', GameType[]>> {
-    const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/genres/${genreName}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
+    return await fetchAPI(
+        `/genres/${genreName}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );
-
-    if (!response.ok && response.status !== 404)
-        throw new Error("Server isn't responding!");
-
-    return await response.json();
 }
