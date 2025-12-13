@@ -1,8 +1,8 @@
 'use server';
-import type { ResponseType, GameType, GenreType } from '@/lib/types';
+import type { QueryAllResponseType, GameType, GenreType } from '@/lib/types';
 
 export async function getGenres(): Promise<
-    ResponseType<'genres', GenreType[]>
+    QueryAllResponseType<'genres', GenreType[]>
 > {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/genres`);
 
@@ -19,7 +19,7 @@ export async function getGenreGames(
     search: string = '',
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'desc'
-): Promise<ResponseType<'games', GameType[]>> {
+): Promise<QueryAllResponseType<'games', GameType[]>> {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_API}/genres/${genreName}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );

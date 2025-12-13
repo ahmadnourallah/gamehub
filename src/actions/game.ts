@@ -1,5 +1,10 @@
 'use server';
-import type { ResponseType, GameType, DeleteResponseType } from '@/lib/types';
+import type {
+    QueryAllResponseType,
+    QueryResponseType,
+    GameType,
+    DeleteResponseType
+} from '@/lib/types';
 
 export async function getGames(
     start: number = 0,
@@ -7,7 +12,7 @@ export async function getGames(
     search: string = '',
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'desc'
-): Promise<ResponseType<'games', GameType[]>> {
+): Promise<QueryAllResponseType<'games', GameType[]>> {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_API}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );
@@ -20,7 +25,7 @@ export async function getGames(
 
 export async function getGame(
     id: number
-): Promise<ResponseType<'game', GameType>> {
+): Promise<QueryResponseType<'game', GameType>> {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/games/${id}`);
 
     if (!response.ok && response.status !== 404)

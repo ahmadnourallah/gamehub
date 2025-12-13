@@ -1,10 +1,15 @@
 'use server';
-import type { ResponseType, CartType } from '@/lib/types';
+import type {
+    UpdateResponseType,
+    QueryResponseType,
+    CartType,
+    DeleteResponseType
+} from '@/lib/types';
 
 export async function addToCart(
     token: string,
     gameId: number
-): Promise<ResponseType<'cart', CartType>> {
+): Promise<UpdateResponseType<'cart', CartType>> {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/cart`, {
         method: 'POST',
         headers: {
@@ -33,7 +38,7 @@ export async function addToCart(
 
 export async function getCart(
     token: string
-): Promise<ResponseType<'cart', CartType>> {
+): Promise<QueryResponseType<'cart', CartType>> {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/cart`, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -46,9 +51,7 @@ export async function getCart(
     return await response.json();
 }
 
-export async function clearCart(
-    token: string
-): Promise<ResponseType<'data', null>> {
+export async function clearCart(token: string): Promise<DeleteResponseType> {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/cart`, {
         method: 'DELETE',
         headers: {
@@ -65,7 +68,7 @@ export async function clearCart(
 export async function deleteCartItem(
     token: string,
     gameId: number
-): Promise<ResponseType<'data', null>> {
+): Promise<DeleteResponseType> {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_API}/cart/${gameId}`,
         {

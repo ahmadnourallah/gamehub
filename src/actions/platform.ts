@@ -1,8 +1,8 @@
 'use server';
-import type { ResponseType, GameType, PlatformType } from '@/lib/types';
+import type { QueryAllResponseType, GameType, PlatformType } from '@/lib/types';
 
 export async function getPlatforms(): Promise<
-    ResponseType<'platforms', PlatformType[]>
+    QueryAllResponseType<'platforms', PlatformType[]>
 > {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/platforms`);
 
@@ -19,7 +19,7 @@ export async function getPlatformGames(
     search: string = '',
     orderBy: 'date' | 'title' = 'date',
     order: 'asc' | 'desc' = 'desc'
-): Promise<ResponseType<'games', GameType[]>> {
+): Promise<QueryAllResponseType<'games', GameType[]>> {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_API}/platforms/${platformName}/games?start=${start}&end=${end}&search=${search}&orderBy=${orderBy}&order=${order}`
     );

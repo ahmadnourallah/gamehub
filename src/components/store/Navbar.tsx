@@ -1,6 +1,6 @@
 'use client';
 import { mdiClose, mdiFire, mdiMenu } from '@mdi/js';
-import { ResponseType, GenreType, PlatformType } from '@/lib/types';
+import { QueryAllResponseType, GenreType, PlatformType } from '@/lib/types';
 import { getGenreIcon, getPlatformIcon } from '@/lib/utils';
 import { ReactNode, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -38,8 +38,8 @@ export default function Navbar({
     genreResponse,
     platformResponse
 }: {
-    genreResponse: ResponseType<'genres', GenreType[]>;
-    platformResponse: ResponseType<'platforms', PlatformType[]>;
+    genreResponse: QueryAllResponseType<'genres', GenreType[]>;
+    platformResponse: QueryAllResponseType<'platforms', PlatformType[]>;
 }) {
     const [isActive, setIsActive] = useState(false);
 

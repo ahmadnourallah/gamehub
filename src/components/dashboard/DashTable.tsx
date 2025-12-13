@@ -11,7 +11,7 @@ import { ActionIcon, MantineProvider, Tooltip } from '@mantine/core';
 import { IconRefresh } from '@tabler/icons-react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import type {
-    ResponseType,
+    QueryAllResponseType,
     DeleteResponseType,
     GameType,
     GenreType,
@@ -27,7 +27,7 @@ type QueryFunction<DataKey extends string, DataType> = (
     search: string,
     orderBy: 'title' | 'date',
     order: 'asc' | 'desc'
-) => Promise<ResponseType<DataKey, DataType[]>>;
+) => Promise<QueryAllResponseType<DataKey, DataType[]>>;
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 interface DashProps<

@@ -2,24 +2,34 @@ type ResponseDataType<DataKey extends string, DataType> = {
     [k in DataKey]: DataType;
 };
 
-interface FailResponseType {
+interface FailureResponseType {
     status: 'fail';
     code: number;
     data: { [k: string]: string }[];
 }
 
-export interface SuccessResponse<DataKey extends string, DataType> {
+export interface SuccessResponseType<Data extends object | null> {
     status: 'success';
-    data: ResponseDataType<DataKey, DataType> & { total?: number };
+    data: Data;
 }
 
-export type ResponseType<DataKey extends string, DataType> =
-    | SuccessResponse<DataKey, DataType>
-    | FailResponseType;
+export type QueryAllResponseType<DataKey extends string, DataType> =
+    | SuccessResponseType<
+          ResponseDataType<DataKey, DataType> & { total: number }
+      >
+    | FailureResponseType;
+
+export type QueryResponseType<DataKey extends string, DataType> =
+    | SuccessResponseType<ResponseDataType<DataKey, DataType>>
+    | FailureResponseType;
+
+export type UpdateResponseType<DataKey extends string, DataType> =
+    | SuccessResponseType<ResponseDataType<DataKey, DataType>>
+    | FailureResponseType;
 
 export type DeleteResponseType =
-    | { status: 'success'; data: null }
-    | FailResponseType;
+    | SuccessResponseType<null>
+    | FailureResponseType;
 
 export interface CategoryType {
     id: number;

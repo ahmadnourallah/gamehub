@@ -1,10 +1,10 @@
-import type { ResponseType, UserType } from '@/lib/types';
+import type { UpdateResponseType, UserType } from '@/lib/types';
 
 export async function createUser(
     name: string,
     email: string,
     password: string
-): Promise<ResponseType<'user', UserType>> {
+): Promise<UpdateResponseType<'user', UserType>> {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/users`, {
         method: 'POST',
         headers: {
