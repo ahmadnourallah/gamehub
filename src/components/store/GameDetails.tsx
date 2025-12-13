@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import { mdiChevronUp, mdiChevronDown } from '@mdi/js';
 import Icon from '@mdi/react';
+import Link from 'next/link';
 
 export default function GameDetails({ game }: { game: GameType }) {
     const [isActive, setIsActive] = useState(false);
@@ -24,20 +25,28 @@ export default function GameDetails({ game }: { game: GameType }) {
                 <div>
                     <span className="font-bold">Genres: </span>
                     {game.genres.map((genre, i) => (
-                        <span key={i}>
+                        <Link
+                            className="text-[rgb(24,176,171)]"
+                            href={`/store/genres/${genre.name}`}
+                            key={i}
+                        >
                             {genre.name}
                             {i !== game.genres.length - 1 && ', '}
-                        </span>
+                        </Link>
                     ))}
                 </div>
 
                 <div>
                     <span className="font-bold">Platforms: </span>
                     {game.platforms.map((platform, i) => (
-                        <span key={i}>
+                        <Link
+                            className="text-[rgb(24,176,171)]"
+                            href={`/store/platforms/${platform.name}`}
+                            key={i}
+                        >
                             {platform.name}
                             {i !== game.platforms.length - 1 && ', '}
-                        </span>
+                        </Link>
                     ))}
                 </div>
 
