@@ -4,7 +4,7 @@ import { mdiCartOutline } from '@mdi/js';
 import { CartContext } from '@/context/CartContextProvider';
 import { useOutsideClick } from '@/utils/hooks';
 import { useMutation } from '@tanstack/react-query';
-import { clearCart } from '@/queries/cart';
+import { clearCart } from '@/actions/cart';
 import { useSession } from 'next-auth/react';
 import Slider from '@/components/common/Slider';
 import CartItem from '@/components/store/CartItem';

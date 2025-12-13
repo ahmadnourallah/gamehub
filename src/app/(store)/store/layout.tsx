@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { getGenres } from '@/queries/genre';
-import { getPlatforms } from '@/queries/platform';
+import { getGenres } from '@/actions/genre';
+import { getPlatforms } from '@/actions/platform';
 import Navbar from '@/components/store/Navbar';
 import Header from '@/components/store/Header';
 

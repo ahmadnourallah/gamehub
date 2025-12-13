@@ -1,6 +1,6 @@
 import { CartContextProvider } from '@/context/CartContextProvider';
 import { auth } from '@/auth';
-import { getCart } from '@/queries/cart';
+import { getCart } from '@/actions/cart';
 import { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
 

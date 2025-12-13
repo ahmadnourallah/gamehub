@@ -1,4 +1,4 @@
-import { getGenreGames } from '@/queries/genre';
+import { getGenreGames } from '@/actions/genre';
 import { notFound } from 'next/navigation';
 import { paginate } from '@/utils/misc';
 import GameList from '@/components/store/GameList';

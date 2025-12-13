@@ -1,5 +1,5 @@
 'use client';
-import type { GameType } from '@/queries/game';
+import type { GameType } from '@/actions/game';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { mdiChevronUp, mdiChevronDown } from '@mdi/js';

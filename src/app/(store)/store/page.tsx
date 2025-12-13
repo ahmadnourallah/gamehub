@@ -1,4 +1,4 @@
-import { getGames } from '@/queries/game';
+import { getGames } from '@/actions/game';
 import { paginate } from '@/utils/misc';
 import GameList from '@/components/store/GameList';
 

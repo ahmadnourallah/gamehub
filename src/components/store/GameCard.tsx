@@ -1,6 +1,6 @@
 'use client';
 import { getPlatformIcon } from '@/utils/icons';
-import { PlatformType } from '@/queries/platform';
+import { PlatformType } from '@/actions/platform';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import shimmer from '@/utils/shimmer';

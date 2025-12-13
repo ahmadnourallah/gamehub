@@ -1,5 +1,5 @@
 'use client';
-import { CartType } from '@/queries/cart';
+import { CartType } from '@/actions/cart';
 import { Dispatch, ReactNode, createContext, useReducer } from 'react';
 
 interface AddActionType {

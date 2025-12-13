@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { validateEmail, validatePassword } from '@/utils/validation';
-import { createUser } from '@/queries/user';
+import { createUser } from '@/actions/user';
 import Button from '@/components/common/Button';
 import Link from 'next/link';
 import AuthInput from '@/components/common/AuthInput';

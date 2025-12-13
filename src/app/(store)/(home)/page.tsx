@@ -1,5 +1,5 @@
 import { mdiGamepadVariant } from '@mdi/js';
-import { getGames } from '@/queries/game';
+import { getGames } from '@/actions/game';
 import Link from 'next/link';
 import Icon from '@mdi/react';
 import Button from '@/components/common/Button';

@@ -1,7 +1,7 @@
-import { getGame } from '@/queries/game';
+import { getGame } from '@/actions/game';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { mdiCloseCircle } from '@mdi/js';
-import { deleteCartItem } from '@/queries/cart';
+import { deleteCartItem } from '@/actions/cart';
 import { useContext } from 'react';
 import { CartContext } from '@/context/CartContextProvider';
 import Link from 'next/link';

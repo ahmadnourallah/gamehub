@@ -2,7 +2,7 @@
 import { useAnimate } from 'motion/react';
 import { mdiMagnify } from '@mdi/js';
 import { useQuery } from '@tanstack/react-query';
-import { getGames } from '@/queries/game';
+import { getGames } from '@/actions/game';
 import { useState } from 'react';
 import { useOutsideClick } from '@/utils/hooks';
 import shimmer from '@/utils/shimmer';

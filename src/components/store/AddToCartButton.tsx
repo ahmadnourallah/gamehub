@@ -1,6 +1,6 @@
 'use client';
 import { useMutation } from '@tanstack/react-query';
-import { addToCart } from '@/queries/cart';
+import { addToCart } from '@/actions/cart';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect } from 'react';
 import { CartContext } from '@/context/CartContextProvider';

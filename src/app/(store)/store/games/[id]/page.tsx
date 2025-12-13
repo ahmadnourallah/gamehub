@@ -1,4 +1,4 @@
-import { getGame } from '@/queries/game';
+import { getGame } from '@/actions/game';
 import { notFound } from 'next/navigation';
 import GameDetails from '@/components/store/GameDetails';
 import AddToCartButton from '@/components/store/AddToCartButton';

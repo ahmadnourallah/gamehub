@@ -1,4 +1,4 @@
-import { getPlatformGames } from '@/queries/platform';
+import { getPlatformGames } from '@/actions/platform';
 import { notFound } from 'next/navigation';
 import { paginate } from '@/utils/misc';
 import GameList from '@/components/store/GameList';
