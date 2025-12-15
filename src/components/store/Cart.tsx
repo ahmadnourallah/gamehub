@@ -10,7 +10,6 @@ import Slider from '@/components/common/Slider';
 import CartItem from '@/components/store/CartItem';
 import IconButton from '@/components/common/IconButton';
 import toast from 'react-hot-toast';
-import { shimmer } from '@/lib/utils';
 
 interface KeyboardEvent {
     key: string;
@@ -83,10 +82,11 @@ export default function Cart() {
                         {cart?.cartItems.length} Games
                     </h2>
                     <button
+                        disabled={!cart?.cartItems.length}
                         onClick={() => {
                             mutate({ token: session?.accessToken as string });
                         }}
-                        className="text-[rgb(153,153,153)]"
+                        className="text-[rgb(153,153,153)] disabled:text-[rgb(153,153,153,0.3)]"
                     >
                         Clear
                     </button>
