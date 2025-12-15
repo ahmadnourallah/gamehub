@@ -107,3 +107,12 @@ export async function fetchAPI(
             } as FailureResponseType;
     }
 }
+
+export function convertErrToStr(
+    error: Record<string, string> | Record<string, string>[]
+): string {
+    if (Array.isArray(error))
+        return error.map((err) => Object.values(err)[0]).join('\n');
+
+    return Object.values(error)[0] || '';
+}

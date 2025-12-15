@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { validateEmail, validatePassword } from '@/lib/validation';
 import { createUser } from '@/actions/user';
+import { convertErrToStr } from '@/lib/utils';
 import Button from '@/components/common/Button';
 import Link from 'next/link';
 import AuthInput from '@/components/common/AuthInput';
@@ -24,12 +25,7 @@ export default function SignUpForm() {
         if (response.status === 'success') {
             toast.success('User created successfully!');
             router.push('/login');
-        } else {
-            if (Array.isArray(response.data))
-                toast.error(
-                    response.data.map((err) => Object.values(err)[0]).join('\n')
-                );
-        }
+        } else toast.error(convertErrToStr(response.data));
     };
 
     return (
