@@ -1,4 +1,3 @@
-'use server';
 import type { QueryAllResponseType, GameType, GenreType } from '@/lib/types';
 import { fetchAPI } from '@/lib/utils';
 
