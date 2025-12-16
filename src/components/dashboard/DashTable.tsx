@@ -53,21 +53,14 @@ export default function DashTable<
         pageIndex: 0,
         pageSize: 10
     });
-    console.log(
-        pagination,
-        `start: ${pagination.pageIndex * pagination.pageSize}`,
-        `end: ${
-            pagination.pageIndex * pagination.pageSize + pagination.pageSize
-        }`
-    );
     const router = useRouter();
     const pathname = usePathname();
     const { data: session } = useSession();
 
     const { data, isError, isFetching, isLoading, refetch } = useQuery({
         queryKey: ['rows', pagination, globalFilter, sorting],
-        queryFn: async () =>
-            await queryFn(
+        queryFn: async () => {
+            const response = await queryFn(
                 pagination.pageIndex * pagination.pageSize,
                 pagination.pageIndex * pagination.pageSize +
                     pagination.pageSize,
@@ -78,7 +71,12 @@ export default function DashTable<
                         : 'date'
                     : 'date',
                 sorting.length > 0 ? (sorting[0].desc ? 'desc' : 'asc') : 'desc'
-            ),
+            );
+
+            if (response.status === 'fail')
+                return Promise.reject(response.data);
+            else return response;
+        },
         placeholderData: keepPreviousData,
         staleTime: 30_000
     });
