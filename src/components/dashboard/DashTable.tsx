@@ -73,9 +73,8 @@ export default function DashTable<
                 sorting.length > 0 ? (sorting[0].desc ? 'desc' : 'asc') : 'desc'
             );
 
-            if (response.status === 'fail')
-                return Promise.reject(response.data);
-            else return response;
+            if (response.status === 'success') return response;
+            else return Promise.reject(response.data);
         },
         placeholderData: keepPreviousData,
         staleTime: 30_000

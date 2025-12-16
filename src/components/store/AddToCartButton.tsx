@@ -30,9 +30,8 @@ export default function AddToCartButton({
             gameId: number;
         }) => {
             const response = await addToCart(token, gameId);
-            if (response.status === 'fail')
-                return Promise.reject(response.data);
-            else return response;
+            if (response.status === 'success') return response;
+            else return Promise.reject(response.data);
         }
     });
 

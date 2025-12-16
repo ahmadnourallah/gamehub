@@ -25,9 +25,8 @@ export default function Cart() {
     const { mutate, isError, isSuccess, isPending } = useMutation({
         mutationFn: async ({ token }: { token: string }) => {
             const response = await clearCart(token);
-            if (response.status === 'fail')
-                return Promise.reject(response.data);
-            else return response.data;
+            if (response.status === 'success') return response;
+            else return Promise.reject(response.data);
         }
     });
 
