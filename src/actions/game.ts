@@ -3,7 +3,8 @@ import type {
     QueryAllResponseType,
     QueryResponseType,
     GameType,
-    DeleteResponseType
+    DeleteResponseType,
+    UpdateResponseType
 } from '@/lib/types';
 import { fetchAPI } from '@/lib/utils';
 
@@ -34,5 +35,32 @@ export async function deleteGame(
         headers: {
             Authorization: `Bearer ${token}`
         }
+    });
+}
+
+export async function updateGame(
+    formData: FormData,
+    token: string,
+    gameId: number
+): Promise<UpdateResponseType<'game', GameType>> {
+    return await fetchAPI(`/games/${gameId}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        body: formData
+    });
+}
+
+export async function addGame(
+    formData: FormData,
+    token: string
+): Promise<UpdateResponseType<'game', GameType>> {
+    return await fetchAPI(`/games`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        body: formData
     });
 }
