@@ -1,4 +1,3 @@
-'use server';
 import type {
     QueryAllResponseType,
     QueryResponseType,
@@ -21,7 +20,7 @@ export async function getGames(
 }
 
 export async function getGame(
-    id: number
+    id: string
 ): Promise<QueryResponseType<'game', GameType>> {
     return await fetchAPI(`/games/${id}`);
 }
@@ -41,7 +40,7 @@ export async function deleteGame(
 export async function updateGame(
     formData: FormData,
     token: string,
-    gameId: number
+    gameId: string
 ): Promise<UpdateResponseType<'game', GameType>> {
     return await fetchAPI(`/games/${gameId}`, {
         method: 'PUT',

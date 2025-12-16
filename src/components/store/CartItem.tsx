@@ -27,7 +27,7 @@ export default function CartItem({
 
     const gameQuery = useQuery({
         queryKey: [gameId],
-        queryFn: async () => await getGame(gameId)
+        queryFn: async () => await getGame(gameId.toString())
     });
 
     const deleteMutation = useMutation({

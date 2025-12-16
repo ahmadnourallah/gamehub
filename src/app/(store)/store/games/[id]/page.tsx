@@ -10,7 +10,7 @@ import Image from 'next/image';
 export default async function Game({
     params
 }: {
-    params: Promise<{ id: number }>;
+    params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
     const response = await getGame(id);
