@@ -1,5 +1,5 @@
 import { getGames } from '@/actions/game';
-import { paginate } from '@/lib/utils';
+import { convertParamToNum, paginate } from '@/lib/utils';
 import GameList from '@/components/store/GameList';
 
 export default async function Store({
@@ -7,7 +7,10 @@ export default async function Store({
 }: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const [start, end, currentPage] = paginate((await searchParams).page, 9);
+    const [start, end, currentPage] = paginate(
+        convertParamToNum((await searchParams).page),
+        9
+    );
     const gameResponse = await getGames(start, end);
 
     if (gameResponse.status === 'fail' && gameResponse.code === 503)

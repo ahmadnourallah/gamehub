@@ -1,6 +1,6 @@
 import { getGenreGames } from '@/actions/genre';
 import { notFound } from 'next/navigation';
-import { paginate } from '@/lib/utils';
+import { convertParamToNum, paginate } from '@/lib/utils';
 import GameList from '@/components/store/GameList';
 
 export default async function GenreGames({
@@ -11,7 +11,10 @@ export default async function GenreGames({
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const { name } = await params;
-    const [start, end, currentPage] = paginate((await searchParams).page, 9);
+    const [start, end, currentPage] = paginate(
+        convertParamToNum((await searchParams).page),
+        9
+    );
     const response = await getGenreGames(name, start, end);
 
     if (response.status === 'fail' && response.code === 404) notFound();

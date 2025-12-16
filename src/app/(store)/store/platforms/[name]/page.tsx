@@ -1,6 +1,6 @@
 import { getPlatformGames } from '@/actions/platform';
 import { notFound } from 'next/navigation';
-import { paginate } from '@/lib/utils';
+import { convertParamToNum, paginate } from '@/lib/utils';
 import GameList from '@/components/store/GameList';
 
 export default async function PlatformGames({
@@ -11,7 +11,10 @@ export default async function PlatformGames({
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const { name } = await params;
-    const [start, end, currentPage] = paginate((await searchParams).page, 9);
+    const [start, end, currentPage] = paginate(
+        convertParamToNum((await searchParams).page),
+        9
+    );
     const response = await getPlatformGames(name, start, end);
 
     if (response.status === 'fail' && response.code === 404) notFound();

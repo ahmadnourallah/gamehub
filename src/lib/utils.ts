@@ -71,18 +71,25 @@ export const shimmer = (w: number = 20, h: number = 20) =>
       <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
     </svg>`);
 
+export function convertParamToNum(
+    param: string | string[] | undefined,
+    fallback: number = 1
+) {
+    let paramNum;
+
+    if (Array.isArray(param)) paramNum = param[0];
+
+    if (typeof param === 'string' && parseInt(param))
+        paramNum = Math.abs(parseInt(param));
+    else paramNum = fallback;
+
+    return paramNum;
+}
+
 export function paginate(
-    pageParam: string | string[] | undefined,
+    page: number,
     pageSize: number
 ): [start: number, end: number, currentPage: number] {
-    let page;
-
-    if (Array.isArray(pageParam)) pageParam = pageParam[0];
-
-    if (typeof pageParam === 'string' && parseInt(pageParam))
-        page = Math.abs(parseInt(pageParam));
-    else page = 1;
-
     const start = page > 1 ? (page - 1) * pageSize + 1 : (page - 1) * pageSize;
     const end = (page - 1) * pageSize + pageSize;
 
