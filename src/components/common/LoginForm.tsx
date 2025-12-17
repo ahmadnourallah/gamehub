@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { validateEmail, validatePassword } from '@/lib/validation';
 import Button from './Button';
-import loginAction from '@/actions/loginAction';
+import loginAction from '@/actions/auth';
 import Link from 'next/link';
 import AuthInput from './AuthInput';
 

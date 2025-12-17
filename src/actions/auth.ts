@@ -1,5 +1,5 @@
 'use server';
-import { signIn } from '@/auth';
+import { signIn, signOut } from '@/auth';
 import { WrongCredentialsError } from '@/lib/errors';
 
 export default async function loginAction(formData: FormData) {
@@ -19,4 +19,8 @@ export default async function loginAction(formData: FormData) {
     }
 
     return {};
+}
+
+export async function signOutAction() {
+    await signOut();
 }
