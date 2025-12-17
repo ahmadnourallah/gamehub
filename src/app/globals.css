@@ -64,3 +64,63 @@ body {
     opacity: 1;
     visibility: visible;
 }
+
+.filepond--item {
+    width: calc(33.33% - 0.5em);
+}
+
+.ReactTags__selected {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative;
+    z-index: 1000;
+}
+
+.ReactTags__tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 6px;
+    padding: 6px;
+}
+
+.ReactTags__remove svg {
+    width: 10px;
+    height: 10px;
+}
+
+.ReactTags__tagInput {
+    position: relative;
+    flex: 1;
+}
+
+.ReactTags__tagInputField {
+    background-color: #fff;
+    color: #000;
+    border-radius: 6px;
+    padding: 6px;
+    width: 100%;
+}
+
+.ReactTags__suggestions {
+    position: absolute;
+    left: 0;
+    z-index: 1000;
+    border: solid 1px #999;
+    width: 100%;
+    padding: 6px;
+    color: black;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.ReactTags__suggestions li {
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.ReactTags__activeSuggestion {
+    background-color: rgb(0, 0, 0, 0.2);
+}
