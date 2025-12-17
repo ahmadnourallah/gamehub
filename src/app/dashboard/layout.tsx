@@ -19,7 +19,7 @@ export default async function DashboardLayout({
 
     return (
         <SessionProvider>
-            <div className="mx-auto flex max-w-[1800px] gap-5">
+            <div className="mx-auto flex max-w-450 gap-5">
                 <DashNavbar />
                 <main className="h-screen w-full overflow-auto p-6">
                     <header className="mb-10 flex w-full justify-between">
