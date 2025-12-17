@@ -19,7 +19,10 @@ import type {
 } from '@/lib/types';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { paginate } from '@/lib/utils';
 import toast from 'react-hot-toast';
+import 'mantine-react-table/styles.css';
+import '@mantine/core/styles.layer.css';
 
 type QueryFunction<DataKey extends string, DataType> = (
     start: number,
@@ -57,13 +60,17 @@ export default function DashTable<
     const pathname = usePathname();
     const { data: session } = useSession();
 
+    const [start, end] = paginate(
+        pagination.pageIndex + 1,
+        pagination.pageSize
+    );
+
     const { data, isError, isFetching, isLoading, refetch } = useQuery({
-        queryKey: ['rows', pagination, globalFilter, sorting],
+        queryKey: [dataKey, pagination, globalFilter, sorting],
         queryFn: async () => {
             const response = await queryFn(
-                pagination.pageIndex * pagination.pageSize,
-                pagination.pageIndex * pagination.pageSize +
-                    pagination.pageSize,
+                start,
+                end,
                 globalFilter,
                 sorting.length > 0
                     ? sorting[0].id === 'title'
@@ -77,7 +84,8 @@ export default function DashTable<
             else return Promise.reject(response.data);
         },
         placeholderData: keepPreviousData,
-        staleTime: 30_000
+        refetchOnMount: 'always',
+        refetchOnWindowFocus: false
     });
 
     const table = useMantineReactTable({
@@ -85,6 +93,9 @@ export default function DashTable<
         data: data?.status === 'success' ? data.data[dataKey] : [],
         enableColumnFilters: false,
         manualPagination: true,
+        mantinePaginationProps: {
+            rowsPerPageOptions: ['5', '10', '20', '30'] // Must be compatible with API's limit
+        },
         manualSorting: true,
         mantineToolbarAlertBannerProps: isError
             ? {
@@ -147,11 +158,7 @@ export default function DashTable<
     });
 
     return (
-        <MantineProvider
-            theme={{
-                colorScheme: 'dark'
-            }}
-        >
+        <MantineProvider forceColorScheme="dark">
             <MantineReactTable table={table} />
         </MantineProvider>
     );
