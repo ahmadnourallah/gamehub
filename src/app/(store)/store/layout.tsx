@@ -9,8 +9,20 @@ export default async function StoreLayout({
 }: {
     children: ReactNode;
 }) {
-    const genreResponse = await getGenres();
-    const platformResponse = await getPlatforms();
+    const genreResponse = await getGenres(
+        undefined,
+        undefined,
+        undefined,
+        'title',
+        'asc'
+    );
+    const platformResponse = await getPlatforms(
+        undefined,
+        undefined,
+        undefined,
+        'title',
+        'asc'
+    );
 
     return (
         <div className="flex h-screen flex-col overflow-hidden">
