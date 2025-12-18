@@ -38,7 +38,7 @@ export default async function GameList({
         );
     } else {
         return (
-            <div className="absolute top-1/2 w-full text-center text-3xl font-bold text-[rgb(24,176,171)]">
+            <div className="text-text-primary absolute top-1/2 w-full text-center text-3xl font-bold">
                 No Games Found
             </div>
         );

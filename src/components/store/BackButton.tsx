@@ -9,7 +9,7 @@ export default function BackButton() {
     return (
         <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-2xl font-bold text-[rgb(204,204,204)] transition-colors duration-200 hover:text-[rgb(24,176,171)]"
+            className="text-text-primary flex items-center gap-2 text-2xl font-bold transition-all duration-200 hover:brightness-80"
         >
             <Icon path={mdiArrowLeft} size={1.3} /> Back
         </button>

@@ -3,6 +3,9 @@
 @theme {
     --breakpoint-sm: 48rem;
     --color-background: #0f1011;
+    --color-gray-dark: rgb(32, 32, 32);
+    --color-gray-neutral: rgb(38, 38, 38);
+    --color-text-primary: rgb(24, 176, 171);
 }
 
 @utility scrollbar-hidden {
@@ -81,7 +84,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: rgb(32, 32, 32);
+    background-color: var(--color-gray-dark);
     border-radius: 6px;
     padding: 6px;
 }

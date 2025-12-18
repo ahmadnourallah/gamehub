@@ -25,7 +25,7 @@ function NavItem({
             className="group flex items-center gap-3 focus:outline-none"
         >
             <div
-                className={`rounded-md p-1.5 transition-colors duration-400 group-focus:bg-white group-focus:text-black ${pathname === link ? 'bg-white text-black' : 'bg-[#202020] text-white group-hover:bg-white group-hover:text-black'}`}
+                className={`rounded-md p-1.5 transition-colors duration-400 group-focus:bg-white group-focus:text-black ${pathname === link ? 'bg-white text-black' : 'bg-gray-dark text-white group-hover:bg-white group-hover:text-black'}`}
             >
                 <Icon path={icon} size={1.3} />
             </div>
@@ -60,7 +60,7 @@ export default function Navbar({
                 className="bg-background h-full overflow-visible sm:visible! sm:static sm:transform-none! sm:p-0"
                 isActive={isActive}
             >
-                <nav className="scrollbar-hidden flex h-full flex-col gap-8 overflow-x-visible overflow-y-auto border-r border-r-[#202020] p-4 sm:border-none">
+                <nav className="scrollbar-hidden border-r-gray-dark flex h-full flex-col gap-8 overflow-x-visible overflow-y-auto border-r p-4 sm:border-none">
                     <div>
                         <ul>
                             <NavItem link="/store" icon={mdiFire}>

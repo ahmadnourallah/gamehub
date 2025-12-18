@@ -14,7 +14,7 @@ export default function Error({
     return (
         <div className="flex h-screen flex-col items-center justify-center">
             <h1 className="text-center text-4xl">Internal Server Error</h1>
-            <div className="mt-12 flex flex-col items-center gap-4 rounded-lg bg-[#202020] p-8">
+            <div className="bg-gray-dark mt-12 flex flex-col items-center gap-4 rounded-lg p-8">
                 <p className="text-xl">Something went wrong</p>
                 <Button onClick={() => window.location.reload()}>
                     Try again

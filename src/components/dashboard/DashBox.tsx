@@ -9,7 +9,7 @@ export default function DashBox({
 }) {
     return (
         <div
-            className={`rounded-md border-2 border-[rgb(38,38,38)] bg-[rgb(32,32,32)] p-4 ${className}`}
+            className={`border-gray-neutral bg-gray-dark rounded-md border-2 p-4 ${className}`}
         >
             {children}
         </div>

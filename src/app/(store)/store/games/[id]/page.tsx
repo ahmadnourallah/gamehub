@@ -56,11 +56,11 @@ export default async function Game({
 
                 <GameDetails game={game} />
 
-                <div className="mt-4 flex justify-between rounded-lg bg-[#202020] p-4">
+                <div className="bg-gray-dark mt-4 flex justify-between rounded-lg p-4">
                     <div className="text-lg font-bold">${game.price}</div>
                     <AddToCartButton
                         gameId={game.id}
-                        className="text-2xl font-bold text-[rgb(24,176,171)]"
+                        className="text-text-primary text-2xl font-bold"
                     />
                 </div>
             </div>

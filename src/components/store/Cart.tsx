@@ -67,13 +67,13 @@ export default function Cart() {
             />
 
             <div
-                className={`${isActive ? 'block' : 'hidden'} fixed top-0 left-0 h-screen w-screen bg-[rgb(0,0,0,.5)]`}
+                className={`${isActive ? 'block' : 'hidden'} fixed top-0 left-0 h-screen w-screen bg-black/50`}
             ></div>
 
             <Slider
                 ref={ref}
                 position="right"
-                className="fixed! flex h-screen w-1/2 flex-col justify-between gap-4 bg-[rgb(32,32,32)] p-8 md:w-2/5 lg:w-1/3"
+                className="bg-gray-dark fixed! flex h-screen w-1/2 flex-col justify-between gap-4 p-8 md:w-2/5 lg:w-1/3"
                 isActive={isActive}
             >
                 <div className="flex justify-between">
@@ -85,7 +85,7 @@ export default function Cart() {
                         onClick={() => {
                             mutate({ token: session?.accessToken as string });
                         }}
-                        className="text-[rgb(153,153,153)] disabled:text-[rgb(153,153,153,0.3)]"
+                        className="text-text-primary disabled:text-[rgb(153,153,153,0.3)]"
                     >
                         Clear
                     </button>
@@ -104,7 +104,7 @@ export default function Cart() {
                     ))}
                 </div>
 
-                <div className="text-md text-[rgb(153,153,153)]">
+                <div className="text-md text-text-primary">
                     Total: $
                     {cart?.cartItems.reduce(
                         (total, item) => item.price + total,

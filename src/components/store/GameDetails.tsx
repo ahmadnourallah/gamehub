@@ -13,7 +13,7 @@ export default function GameDetails({ game }: { game: GameType }) {
         <motion.div
             layout
             transition={{ bounce: 0, ease: 'linear' }}
-            className="mt-4 flex flex-col rounded-lg bg-[#202020] p-4 will-change-contents"
+            className="bg-gray-dark mt-4 flex flex-col rounded-lg p-4 will-change-contents"
         >
             <h2 className="text-2xl font-bold">Description</h2>
             <p className="mt-2 text-lg">{game.description}</p>
@@ -26,7 +26,7 @@ export default function GameDetails({ game }: { game: GameType }) {
                     <span className="font-bold">Genres: </span>
                     {game.genres.map((genre, i) => (
                         <Link
-                            className="text-[rgb(24,176,171)]"
+                            className="text-text-primary"
                             href={`/store/genres/${genre.name}`}
                             key={i}
                         >
@@ -40,7 +40,7 @@ export default function GameDetails({ game }: { game: GameType }) {
                     <span className="font-bold">Platforms: </span>
                     {game.platforms.map((platform, i) => (
                         <Link
-                            className="text-[rgb(24,176,171)]"
+                            className="text-text-primary"
                             href={`/store/platforms/${platform.name}`}
                             key={i}
                         >
@@ -63,7 +63,7 @@ export default function GameDetails({ game }: { game: GameType }) {
 
             <button
                 onClick={() => setIsActive(!isActive)}
-                className="flex items-center self-end text-lg transition-colors duration-200 hover:text-[rgb(204,204,204)]"
+                className="hover:text-text-primary flex items-center self-end text-lg transition-colors duration-200"
             >
                 <span>{isActive ? 'Less' : 'More'}</span>
                 <Icon

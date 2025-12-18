@@ -56,7 +56,7 @@ export default function CartItem({
 
     if (isDisabled || gameQuery.isPending || deleteMutation.isPending) {
         return (
-            <div className="h-34.25 rounded-lg bg-[rgb(38,38,38)] text-white">
+            <div className="bg-gray-netural h-34.25 rounded-lg text-white">
                 <Image
                     className="h-full w-full rounded-lg"
                     src={`data:image/svg+xml;base64,${shimmer()}`}
@@ -73,7 +73,7 @@ export default function CartItem({
         const game = gameQuery.data.data.game;
 
         return (
-            <div className="flex flex-col gap-4 rounded-lg bg-[rgb(38,38,38)] p-4">
+            <div className="bg-gray-neutral flex flex-col gap-4 rounded-lg p-4">
                 <button
                     onClick={() => {
                         deleteMutation.mutate({ token, gameId });
@@ -102,7 +102,7 @@ export default function CartItem({
                             <p className="line-clamp-1" title={game.title}>
                                 {game.title}
                             </p>
-                            <p className="text-[rgb(153,153,153)]">${price}</p>
+                            <p className="text-text-primary">${price}</p>
                         </div>
                     </div>
                 </Link>

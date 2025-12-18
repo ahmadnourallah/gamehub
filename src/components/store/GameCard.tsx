@@ -31,7 +31,7 @@ export default function GameCard({
                     router.push(`/store/games/${id}`);
             }}
             tabIndex={0}
-            className={`flex h-full max-w-150 flex-col gap-2 rounded-2xl bg-[#202020] ${className}`}
+            className={`bg-gray-dark flex h-full max-w-150 flex-col gap-2 rounded-2xl ${className}`}
         >
             <Link href={`/store/games/${id}`} tabIndex={-1}>
                 <Image
@@ -50,7 +50,7 @@ export default function GameCard({
             </Link>
 
             <div className="flex flex-col gap-3 p-4">
-                <div className="flex justify-between text-[rgb(24,176,171)]">
+                <div className="text-text-primary flex justify-between">
                     <AddToCartButton gameId={id} />
                     <div>${price}</div>
                 </div>

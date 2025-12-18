@@ -30,7 +30,7 @@ export default function SignUpForm() {
 
     return (
         <form
-            className="flex flex-col gap-2 rounded-lg bg-[#202020] p-8 shadow-sm shadow-[rgba(0,255,255,0.7)]"
+            className="bg-gray-dark flex flex-col gap-2 rounded-lg p-8 shadow-sm shadow-[rgba(0,255,255,0.7)]"
             onSubmit={handleSignUp}
         >
             <AuthInput
@@ -82,7 +82,7 @@ export default function SignUpForm() {
 
             <p>
                 Already have an account?{' '}
-                <Link className="text-[rgb(24,176,171)]" href="/login">
+                <Link className="text-text-primary" href="/login">
                     Log in
                 </Link>
             </p>

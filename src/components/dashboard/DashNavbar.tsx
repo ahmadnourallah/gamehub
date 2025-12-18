@@ -57,7 +57,7 @@ export default function DashNavbar() {
                 className="bg-background h-full overflow-visible sm:visible! sm:static sm:transform-none! sm:p-0"
                 isActive={isActive}
             >
-                <nav className="scrollbar-hidden h-screen overflow-y-auto bg-[rgb(32,32,32)]">
+                <nav className="scrollbar-hidden bg-gray-dark h-screen overflow-y-auto">
                     <ul className="flex flex-col items-center text-xl">
                         <li className="flex w-max items-center gap-4 p-4 select-none">
                             <Logo />

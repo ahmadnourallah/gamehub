@@ -17,7 +17,7 @@ export default function LoginForm() {
 
     return (
         <form
-            className="flex flex-col gap-2 rounded-lg bg-[#202020] p-8 shadow-sm shadow-[rgba(0,255,255,0.7)]"
+            className="bg-gray-dark flex flex-col gap-2 rounded-lg p-8 shadow-sm shadow-[rgba(0,255,255,0.7)]"
             action={async (formData: FormData) => {
                 const res = await loginAction(formData);
 
@@ -62,7 +62,7 @@ export default function LoginForm() {
 
             <p>
                 Don&apos;t have an account?{' '}
-                <Link className="text-[rgb(24,176,171)]" href="/signup">
+                <Link className="text-text-primary" href="/signup">
                     Sign up
                 </Link>
             </p>

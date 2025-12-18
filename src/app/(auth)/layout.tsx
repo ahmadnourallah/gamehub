@@ -24,7 +24,7 @@ export default async function AuthLayout({
                     </h1>
 
                     <Link href="/">
-                        <button className="flex gap-2 text-2xl font-bold text-[rgb(204,204,204)] transition-colors duration-200 hover:text-[rgb(24,176,171)]">
+                        <button className="text-text-primary flex gap-2 text-2xl font-bold transition-all duration-200 hover:brightness-80">
                             <Icon path={mdiArrowLeft} size={1.3} /> Home
                         </button>
                     </Link>

@@ -65,7 +65,7 @@ export default async function Home() {
                     </div>
                 </div>
 
-                <footer className="bg-[#202020] p-6 text-center text-lg font-bold">
+                <footer className="bg-gray-dark p-6 text-center text-lg font-bold">
                     @ All rights reserved to Ahmad Nour Alla
                 </footer>
             </div>
