@@ -82,7 +82,7 @@ export default function Cart() {
                         <div
                             aria-modal
                             role="modal"
-                            className="flex justify-between"
+                            className="flex justify-between text-white"
                         >
                             <h2 className="text-2xl font-extrabold">
                                 {cart?.cartItems.length} Games

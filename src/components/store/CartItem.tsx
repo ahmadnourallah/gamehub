@@ -73,7 +73,7 @@ export default function CartItem({
         const game = gameQuery.data.data.game;
 
         return (
-            <div className="bg-gray-neutral flex flex-col gap-4 rounded-lg p-4">
+            <div className="bg-gray-neutral text-white flex flex-col gap-4 rounded-lg p-4">
                 <button
                     onClick={() => {
                         deleteMutation.mutate({ token, gameId });
