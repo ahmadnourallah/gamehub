@@ -6,6 +6,7 @@ import { useOutsideClick } from '@/lib/hooks';
 import { useMutation } from '@tanstack/react-query';
 import { clearCart } from '@/actions/cart';
 import { useSession } from 'next-auth/react';
+import { FocusTrap } from '@mantine/core';
 import Slider from '@/components/common/Slider';
 import CartItem from '@/components/store/CartItem';
 import IconButton from '@/components/common/IconButton';
@@ -73,44 +74,54 @@ export default function Cart() {
             <Slider
                 ref={ref}
                 position="right"
-                className="bg-gray-dark fixed! flex h-screen w-3/4 flex-col justify-between gap-4 p-8 md:w-2/5 lg:w-1/3"
+                className="bg-gray-dark fixed! h-screen w-3/4 md:w-2/5 lg:w-1/3"
                 isActive={isActive}
             >
-                <div className="flex justify-between">
-                    <h2 className="text-2xl font-extrabold">
-                        {cart?.cartItems.length} Games
-                    </h2>
-                    <button
-                        disabled={!cart?.cartItems.length}
-                        onClick={() => {
-                            mutate({ token: session?.accessToken as string });
-                        }}
-                        className="text-text-primary disabled:text-[rgb(153,153,153,0.3)]"
-                    >
-                        Clear
-                    </button>
-                </div>
+                <FocusTrap>
+                    <div className="flex h-screen flex-col justify-between gap-4 p-8">
+                        <div
+                            aria-modal
+                            role="modal"
+                            className="flex justify-between"
+                        >
+                            <h2 className="text-2xl font-extrabold">
+                                {cart?.cartItems.length} Games
+                            </h2>
+                            <button
+                                disabled={!cart?.cartItems.length}
+                                onClick={() => {
+                                    mutate({
+                                        token: session?.accessToken as string
+                                    });
+                                }}
+                                className="text-text-primary disabled:text-[rgb(153,153,153,0.3)]"
+                            >
+                                Clear
+                            </button>
+                        </div>
 
-                <div className="scrollbar-hidden relative flex h-full flex-col gap-3 overflow-y-auto">
-                    {cart?.cartItems.map((item, index) => (
-                        <CartItem
-                            isDisabled={isPending}
-                            key={index}
-                            token={session?.accessToken as string}
-                            gameId={item.gameId}
-                            price={item.price}
-                            close={close}
-                        />
-                    ))}
-                </div>
+                        <div className="scrollbar-hidden relative flex h-full flex-col gap-3 overflow-y-auto">
+                            {cart?.cartItems.map((item, index) => (
+                                <CartItem
+                                    isDisabled={isPending}
+                                    key={index}
+                                    token={session?.accessToken as string}
+                                    gameId={item.gameId}
+                                    price={item.price}
+                                    close={close}
+                                />
+                            ))}
+                        </div>
 
-                <div className="text-md text-text-primary">
-                    Total: $
-                    {cart?.cartItems.reduce(
-                        (total, item) => item.price + total,
-                        0
-                    )}
-                </div>
+                        <div className="text-md text-text-primary">
+                            Total: $
+                            {cart?.cartItems.reduce(
+                                (total, item) => item.price + total,
+                                0
+                            )}
+                        </div>
+                    </div>
+                </FocusTrap>
             </Slider>
         </>
     );
