@@ -16,7 +16,7 @@ export default async function GameList({
     if (games.length > 0) {
         return (
             <div className="mb-8">
-                <div className="grid h-max grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+                <div className="grid h-max grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
                     {games.map((game) => (
                         <GameCard
                             key={game.id}
