@@ -22,7 +22,7 @@ export default async function Game({
 
         return (
             <div className="w-full pb-4">
-                <div className="flex items-baseline justify-between">
+                <div className="flex flex-col items-baseline justify-between gap-4 md:flex-row">
                     <BackButton />
                     <h1 className="mb-10">{game.title}</h1>
                 </div>
@@ -60,7 +60,7 @@ export default async function Game({
                     <div className="text-lg font-bold">${game.price}</div>
                     <AddToCartButton
                         gameId={game.id}
-                        className="text-text-primary text-2xl font-bold"
+                        className="text-text-primary text-xl font-bold md:text-2xl"
                     />
                 </div>
             </div>

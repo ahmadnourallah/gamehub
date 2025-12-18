@@ -37,7 +37,7 @@ export default async function Home() {
                             className="overflow-hidden"
                             options={{ dragFree: true }}
                         >
-                            <div className="embla__container flex h-max *:mx-2 *:flex-[0_0_50%] sm:*:flex-[0_0_25%]">
+                            <div className="embla__container flex h-max *:mx-2 *:flex-[0_0_70%] sm:*:flex-[0_0_25%]">
                                 {gameResponse.data.games.map((game, i) => (
                                     <div
                                         key={i}
