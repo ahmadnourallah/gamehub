@@ -19,7 +19,10 @@ export default function GameDetails({ game }: { game: GameType }) {
             <p className="mt-2 text-lg">{game.description}</p>
 
             <motion.div
-                animate={{ maxHeight: isActive ? '100px' : 0 }}
+                animate={{
+                    maxHeight: isActive ? '100px' : 0,
+                    display: isActive ? 'block' : 'none'
+                }}
                 className="my-2 overflow-hidden text-lg"
             >
                 <div>
