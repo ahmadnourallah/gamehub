@@ -71,9 +71,7 @@ export default function Navbar({
 
                     {genreResponse.status === 'success' && (
                         <div>
-                            <div className="mb-2 text-4xl font-bold">
-                                Genres
-                            </div>
+                            <h2 className="mb-2">Genres</h2>
                             <ul className="flex flex-col gap-2">
                                 {genreResponse.data.genres.map(
                                     (genre, index) => (
@@ -92,9 +90,7 @@ export default function Navbar({
 
                     {platformResponse.status === 'success' && (
                         <div>
-                            <div className="mb-2 text-4xl font-bold">
-                                Platforms
-                            </div>
+                            <h2 className="mb-2">Platforms</h2>
                             <ul className="flex flex-col gap-2">
                                 {platformResponse.data.platforms.map(
                                     (platform, index) => (

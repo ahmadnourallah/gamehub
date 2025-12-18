@@ -24,7 +24,7 @@ export default async function Game({
             <div className="w-full pb-4">
                 <div className="flex items-baseline justify-between">
                     <BackButton />
-                    <h1 className="mb-10 text-5xl font-bold">{game.title}</h1>
+                    <h1 className="mb-10">{game.title}</h1>
                 </div>
 
                 <Carousel

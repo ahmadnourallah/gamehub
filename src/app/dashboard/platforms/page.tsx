@@ -21,7 +21,7 @@ export default function DashPlatforms() {
     return (
         <>
             <div className="mb-4 flex justify-between">
-                <h1 className="text-4xl font-bold">Platforms</h1>
+                <h1>Platforms</h1>
                 <Link href="/dashboard/platforms/new">
                     <Button>New</Button>
                 </Link>

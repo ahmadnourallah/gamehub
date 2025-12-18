@@ -66,12 +66,12 @@ export default function GameCard({
                 </div>
 
                 <Link href={`/store/games/${id}`} tabIndex={-1}>
-                    <h3
+                    <h2
                         title={title}
-                        className="line-clamp-2 text-2xl font-bold overflow-ellipsis"
+                        className="line-clamp-2 overflow-ellipsis"
                     >
                         {title}
-                    </h3>
+                    </h2>
                 </Link>
             </div>
         </div>

@@ -197,7 +197,7 @@ export default function DashEditor<
 
     return (
         <div>
-            <h1 className="mb-8 text-4xl font-bold">
+            <h1 className="mb-8">
                 {isEditing
                     ? `Edit - ${'title' in props.item ? props.item.title : props.item.name}`
                     : 'Add'}

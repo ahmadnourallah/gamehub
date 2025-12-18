@@ -19,7 +19,7 @@ export default async function Home() {
 
                 <div>
                     <div className="container mx-auto mb-4 flex flex-col items-center text-center">
-                        <h1 className="w-max border-b-2 border-b-white text-4xl font-bold">
+                        <h1 className="w-max border-b-2 border-b-white">
                             Latest Games
                         </h1>
                         <p className="m-4 text-lg">

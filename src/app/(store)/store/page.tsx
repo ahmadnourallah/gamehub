@@ -19,7 +19,7 @@ export default async function Store({
     if (gameResponse.status === 'success')
         return (
             <>
-                <h1 className="mb-8 text-6xl font-bold">Latest Games</h1>
+                <h1 className="mb-8">Latest Games</h1>
                 <GameList
                     currentPage={currentPage}
                     pageSize={9}

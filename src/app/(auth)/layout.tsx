@@ -19,7 +19,7 @@ export default async function AuthLayout({
         <div className="flex h-screen w-screen flex-col items-center justify-center">
             <div>
                 <div className="mb-8 flex items-center justify-between">
-                    <h1 className="text-center text-4xl">
+                    <h1 className="text-center">
                         <AuthTitle />
                     </h1>
 

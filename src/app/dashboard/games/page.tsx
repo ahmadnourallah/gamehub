@@ -25,8 +25,8 @@ const columns: MRT_ColumnDef<GameType>[] = [
 export default function DashGames() {
     return (
         <>
-            <div className="mb-4 flex justify-between">
-                <h1 className="text-4xl font-bold">Games</h1>
+            <div className="mb-4 flex items-center justify-between">
+                <h1>Games</h1>
                 <Link href="/dashboard/games/new">
                     <Button>New</Button>
                 </Link>

@@ -22,7 +22,7 @@ export default async function GenreGames({
     else {
         return (
             <>
-                <h1 className="mb-8 text-6xl font-bold">{name} Games</h1>
+                <h1 className="mb-8">{name} Games</h1>
 
                 <GameList
                     currentPage={currentPage}
