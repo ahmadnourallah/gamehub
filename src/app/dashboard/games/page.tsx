@@ -32,6 +32,7 @@ export default function DashGames() {
                 </Link>
             </div>
             <DashTable
+                addActions={true}
                 dataKey="games"
                 onDelete={deleteGame}
                 queryFn={getGames}

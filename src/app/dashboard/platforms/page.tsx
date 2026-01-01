@@ -27,6 +27,7 @@ export default function DashPlatforms() {
                 </Link>
             </div>
             <DashTable
+                addActions={true}
                 dataKey="platforms"
                 onDelete={deletePlatform}
                 queryFn={getPlatforms}

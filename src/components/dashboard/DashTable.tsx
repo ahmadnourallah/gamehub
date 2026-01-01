@@ -15,7 +15,8 @@ import type {
     DeleteResponseType,
     GameType,
     GenreType,
-    PlatformType
+    PlatformType,
+    CartType
 } from '@/lib/types';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -33,7 +34,7 @@ type QueryFunction<DataKey extends string, DataType> = (
 ) => Promise<QueryAllResponseType<DataKey, DataType[]>>;
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-interface DashProps<
+interface DashPropsWithActions<
     DataKey extends string,
     DataType extends Record<string, any>
 > {
@@ -44,12 +45,30 @@ interface DashProps<
         identifier: string,
         token: string
     ) => Promise<DeleteResponseType>;
+    addActions: true;
 }
+
+interface DashPropsWithoutActions<
+    DataKey extends string,
+    DataType extends Record<string, any>
+> {
+    columns: MRT_ColumnDef<DataType>[];
+    queryFn: QueryFunction<DataKey, DataType>;
+    dataKey: DataKey;
+    addActions: false;
+}
+
+type DashProps<
+    DataKey extends string,
+    DataType extends GameType | GenreType | PlatformType | CartType
+> =
+    | DashPropsWithActions<DataKey, DataType>
+    | DashPropsWithoutActions<DataKey, DataType>;
 
 export default function DashTable<
     DataKey extends string,
-    DataType extends GameType | GenreType | PlatformType
->({ columns, queryFn, dataKey, onDelete }: DashProps<DataKey, DataType>) {
+    DataType extends GameType | GenreType | PlatformType | CartType
+>(props: DashProps<DataKey, DataType>) {
     const [globalFilter, setGlobalFilter] = useState('');
     const [sorting, setSorting] = useState<MRT_SortingState>([]);
     const [pagination, setPagination] = useState<MRT_PaginationState>({
@@ -66,9 +85,9 @@ export default function DashTable<
     );
 
     const { data, isError, isFetching, isLoading, refetch } = useQuery({
-        queryKey: [dataKey, pagination, globalFilter, sorting],
+        queryKey: [props.dataKey, pagination, globalFilter, sorting],
         queryFn: async () => {
-            const response = await queryFn(
+            const response = await props.queryFn(
                 start,
                 end,
                 globalFilter,
@@ -89,8 +108,8 @@ export default function DashTable<
     });
 
     const table = useMantineReactTable({
-        columns,
-        data: data?.status === 'success' ? data.data[dataKey] : [],
+        columns: props.columns,
+        data: data?.status === 'success' ? data.data[props.dataKey] : [],
         enableColumnFilters: false,
         manualPagination: true,
         mantinePaginationProps: {
@@ -122,39 +141,42 @@ export default function DashTable<
             showProgressBars: isFetching,
             sorting
         },
-        enableRowActions: true,
-        renderRowActions: ({ row }) => (
-            <div className="flex gap-2">
-                <button
-                    onClick={() =>
-                        router.push(
-                            `${pathname}/${'title' in row.original ? row.original.id : row.original.name}`
-                        )
-                    }
-                    className="rounded-sm bg-blue-500 px-2 py-1 text-sm font-semibold text-white transition-colors hover:bg-blue-500/70"
-                >
-                    Edit
-                </button>
-                <button
-                    onClick={async () => {
-                        const response = await onDelete(
-                            'title' in row.original
-                                ? row.original.id.toString()
-                                : row.original.name,
-                            session?.accessToken || ''
-                        );
+        enableRowActions: props.addActions,
+        renderRowActions: props.addActions
+            ? ({ row }) => (
+                  <div className="flex gap-2">
+                      <button
+                          onClick={() =>
+                              router.push(
+                                  `${pathname}/${'title' in row.original || 'cartItems' in row.original ? row.original.id : row.original.name}`
+                              )
+                          }
+                          className="rounded-sm bg-blue-500 px-2 py-1 text-sm font-semibold text-white transition-colors hover:bg-blue-500/70"
+                      >
+                          Edit
+                      </button>
+                      <button
+                          onClick={async () => {
+                              const response = await props.onDelete(
+                                  'title' in row.original ||
+                                      'cartItems' in row.original
+                                      ? row.original.id.toString()
+                                      : row.original.name,
+                                  session?.accessToken || ''
+                              );
 
-                        if (response.status === 'success') {
-                            toast.success('Item has been deleted!');
-                            refetch();
-                        }
-                    }}
-                    className="rounded-sm bg-red-500 px-2 py-1 text-sm font-semibold text-white transition-colors hover:bg-red-500/70"
-                >
-                    Delete
-                </button>
-            </div>
-        )
+                              if (response.status === 'success') {
+                                  toast.success('Item has been deleted!');
+                                  refetch();
+                              }
+                          }}
+                          className="rounded-sm bg-red-500 px-2 py-1 text-sm font-semibold text-white transition-colors hover:bg-red-500/70"
+                      >
+                          Delete
+                      </button>
+                  </div>
+              )
+            : undefined
     });
 
     return (

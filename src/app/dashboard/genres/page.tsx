@@ -27,6 +27,7 @@ export default function DashGenres() {
                 </Link>
             </div>
             <DashTable
+                addActions={true}
                 dataKey="genres"
                 onDelete={deleteGenre}
                 queryFn={getGenres}
