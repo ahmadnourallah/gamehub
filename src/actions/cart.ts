@@ -1,10 +1,23 @@
 import type {
-    UpdateResponseType,
+    QueryAllResponseType,
     QueryResponseType,
-    CartType,
-    DeleteResponseType
+    UpdateResponseType,
+    DeleteResponseType,
+    CartType
 } from '@/lib/types';
 import { fetchAPI } from '@/lib/utils';
+
+export async function getCarts(
+    start: number = 0,
+    end: number = 10,
+    token: string
+): Promise<QueryAllResponseType<'carts', CartType[]>> {
+    return await fetchAPI(`/cart/all?start=${start}&end=${end}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
 
 export async function addToCart(
     token: string,
