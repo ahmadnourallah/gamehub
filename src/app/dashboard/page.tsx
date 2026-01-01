@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import {
     mdiBank,
     mdiCart,
@@ -9,10 +8,26 @@ import {
     mdiGamepadVariant,
     mdiHuman
 } from '@mdi/js';
+import { getGames } from '@/actions/game';
+import { getCarts } from '@/actions/cart';
+import { getGenres } from '@/actions/genre';
+import { getPlatforms } from '@/actions/platform';
+import { auth } from '@/auth';
 import Icon from '@mdi/react';
 import DashBox from '@/components/dashboard/DashBox';
 
-export default function DashboardHome() {
+export default async function DashboardHome() {
+    const session = await auth();
+
+    const gameResponse = await getGames();
+    const cartResponse = await getCarts(
+        undefined,
+        undefined,
+        session?.accessToken as string
+    );
+    const genreResponse = await getGenres();
+    const platformResponse = await getPlatforms();
+
     return (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
             <DashBox>
@@ -21,7 +36,10 @@ export default function DashboardHome() {
                     <span>Game count:</span>
                 </div>
                 <div className="my-2 text-center text-2xl font-bold">
-                    50 Games
+                    {gameResponse.status === 'success'
+                        ? gameResponse.data.total
+                        : 0}{' '}
+                    Games
                 </div>
                 <div className="flex w-full justify-end text-sm">
                     <Icon size={0.8} path={mdiCurrencyUsd} />
@@ -35,7 +53,10 @@ export default function DashboardHome() {
                     <span>Cart count:</span>
                 </div>
                 <div className="my-2 text-center text-2xl font-bold">
-                    20 Carts
+                    {cartResponse.status === 'success'
+                        ? cartResponse.data.total
+                        : 0}{' '}
+                    Carts
                 </div>
                 <div className="flex w-full justify-end gap-1 text-sm">
                     <Icon size={0.8} path={mdiBank} />
@@ -49,7 +70,10 @@ export default function DashboardHome() {
                     <span>Genre count:</span>
                 </div>
                 <div className="my-2 text-center text-2xl font-bold">
-                    5 Genres
+                    {genreResponse.status === 'success'
+                        ? genreResponse.data.total
+                        : 0}{' '}
+                    Genres
                 </div>
                 <div className="gap-sm flex w-full justify-end text-sm">
                     <Icon size={0.8} path={mdiHuman} />
@@ -63,190 +87,10 @@ export default function DashboardHome() {
                     <span>Platform count:</span>
                 </div>
                 <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
-                </div>
-                <div className="gap-sm flex w-full justify-end text-sm">
-                    <Icon size={0.8} path={mdiGamepadRoundUp} />
-                    <span>For every type of game</span>
-                </div>
-            </DashBox>
-            <DashBox>
-                <div className="flex gap-2">
-                    <Icon size={1} path={mdiConsole} />
-                    <span>Platform count:</span>
-                </div>
-                <div className="my-2 text-center text-2xl font-bold">
-                    15 Platforms
+                    {platformResponse.status === 'success'
+                        ? platformResponse.data.total
+                        : 0}{' '}
+                    Platforms
                 </div>
                 <div className="gap-sm flex w-full justify-end text-sm">
                     <Icon size={0.8} path={mdiGamepadRoundUp} />
