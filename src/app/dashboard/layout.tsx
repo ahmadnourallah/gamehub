@@ -19,24 +19,26 @@ export default async function DashboardLayout({
 
     return (
         <SessionProvider>
-            <div className="mx-auto flex max-w-450 gap-5">
+            <div className="flex h-screen overflow-hidden">
                 <DashNavbar />
-                <main className="h-screen w-full overflow-auto p-6">
-                    <header className="mb-10 flex w-full items-center justify-between">
-                        <div className="text-md sm:text-xl">
-                            Welcome, {session?.user.name}
-                        </div>
-                        <div className="flex items-center">
-                            <SignOutButton />
-                            <VerticalDivider />
-                            <IconButton
-                                link="/store"
-                                tooltip="Store"
-                                iconPath={mdiStore}
-                            />
-                        </div>
-                    </header>
-                    {children}
+                <main className="h-full w-full overflow-hidden">
+                    <div className="scrollbar-hidden relative h-full w-full overflow-x-auto p-6">
+                        <header className="mb-10 flex w-full items-center justify-between">
+                            <div className="text-md sm:text-xl">
+                                Welcome, {session?.user.name}
+                            </div>
+                            <div className="flex items-center">
+                                <SignOutButton />
+                                <VerticalDivider />
+                                <IconButton
+                                    link="/store"
+                                    tooltip="Store"
+                                    iconPath={mdiStore}
+                                />
+                            </div>
+                        </header>
+                        {children}
+                    </div>
                 </main>
             </div>
         </SessionProvider>
