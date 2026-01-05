@@ -18,7 +18,7 @@ export default function Hero() {
                 <div className="embla__slide relative h-full min-w-0 flex-[0_0_100%]">
                     <div className="absolute top-0 left-0 z-100 flex h-full w-full flex-col items-center justify-center gap-5 bg-[linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2))] text-center">
                         <div>
-                            <h1>Game Store</h1>
+                            <h1>GameHub</h1>
                             <p className="m-2 text-xl">
                                 All the games you&apos;re looking for in one
                                 place!

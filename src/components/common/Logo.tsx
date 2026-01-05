@@ -7,14 +7,9 @@ export default function Logo() {
             href="/"
             className="scaleOnHover flex cursor-pointer items-center gap-2"
         >
-            <Image
-                src="/logo.png"
-                width={45}
-                height={45}
-                alt="Game Store logo"
-            />
+            <Image src="/logo.png" width={45} height={45} alt="GameHub logo" />
             <span className="hidden text-3xl font-medium sm:block">
-                Game Store
+                GameHub
             </span>
         </Link>
     );

@@ -20,7 +20,7 @@ const GTWalsheimPro = localFont({
 });
 
 export const metadata: Metadata = {
-    title: 'Game Store',
+    title: 'GameHub',
     description: "All the games you're looking for in one place"
 };
 
