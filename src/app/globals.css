@@ -39,6 +39,8 @@ button {
 body {
     background: var(--color-background);
     color: #ffffff;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .scaleOnHover {
