@@ -1,6 +1,6 @@
 'use client';
 import type { GameType } from '@/lib/types';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import { mdiChevronUp, mdiChevronDown } from '@mdi/js';
 import Icon from '@mdi/react';
@@ -10,63 +10,61 @@ export default function GameDetails({ game }: { game: GameType }) {
     const [isActive, setIsActive] = useState(false);
 
     return (
-        <motion.div
-            layout
-            transition={{ bounce: 0, ease: 'linear' }}
-            className="bg-gray-dark mt-4 flex flex-col rounded-lg p-4 will-change-contents"
-        >
+        <div className="bg-gray-dark mt-4 flex flex-col overflow-hidden rounded-lg p-4">
             <h2 className="text-2xl font-bold">Description</h2>
-            <p className="mt-2 text-lg">{game.description}</p>
+            <p className="my-2 text-lg">{game.description}</p>
 
-            <motion.div
-                animate={{
-                    maxHeight: isActive ? '100px' : 0,
-                    display: isActive ? 'block' : 'none'
-                }}
-                className="my-2 overflow-hidden text-lg"
-            >
-                <div>
-                    <span className="font-bold">Genres: </span>
-                    {game.genres.map((genre, i) => (
-                        <Link
-                            className="text-text-primary"
-                            href={`/store/genres/${genre.name}`}
-                            key={i}
-                        >
-                            {genre.name}
-                            {i !== game.genres.length - 1 && ', '}
-                        </Link>
-                    ))}
-                </div>
+            <AnimatePresence>
+                {isActive && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        className="text-lg"
+                    >
+                        <div>
+                            <span className="font-bold">Genres: </span>
+                            {game.genres.map((genre, i) => (
+                                <Link
+                                    className="text-text-primary"
+                                    href={`/store/genres/${genre.name}`}
+                                    key={i}
+                                >
+                                    {genre.name}
+                                    {i !== game.genres.length - 1 && ', '}
+                                </Link>
+                            ))}
+                        </div>
 
-                <div>
-                    <span className="font-bold">Platforms: </span>
-                    {game.platforms.map((platform, i) => (
-                        <Link
-                            className="text-text-primary"
-                            href={`/store/platforms/${platform.name}`}
-                            key={i}
-                        >
-                            {platform.name}
-                            {i !== game.platforms.length - 1 && ', '}
-                        </Link>
-                    ))}
-                </div>
+                        <div>
+                            <span className="font-bold">Platforms: </span>
+                            {game.platforms.map((platform, i) => (
+                                <Link
+                                    className="text-text-primary"
+                                    href={`/store/platforms/${platform.name}`}
+                                    key={i}
+                                >
+                                    {platform.name}
+                                    {i !== game.platforms.length - 1 && ', '}
+                                </Link>
+                            ))}
+                        </div>
 
-                <div>
-                    <span className="font-bold">Publishers: </span>
-                    {game.publishers.map((publisher, i) => (
-                        <span key={i}>
-                            {publisher.name}
-                            {i !== game.publishers.length - 1 && ', '}
-                        </span>
-                    ))}
-                </div>
-            </motion.div>
-
+                        <div>
+                            <span className="font-bold">Publishers: </span>
+                            {game.publishers.map((publisher, i) => (
+                                <span key={i}>
+                                    {publisher.name}
+                                    {i !== game.publishers.length - 1 && ', '}
+                                </span>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
             <button
                 onClick={() => setIsActive(!isActive)}
-                className="hover:text-text-primary flex items-center self-end text-lg transition-colors duration-200"
+                className="hover:text-text-primary mt-2 flex items-center self-end text-lg transition-colors duration-200"
             >
                 <span>{isActive ? 'Less' : 'More'}</span>
                 <Icon
@@ -74,6 +72,6 @@ export default function GameDetails({ game }: { game: GameType }) {
                     size={1}
                 />
             </button>
-        </motion.div>
+        </div>
     );
 }
