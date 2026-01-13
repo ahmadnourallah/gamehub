@@ -1,11 +1,33 @@
 import { getGame } from '@/actions/game';
 import { notFound } from 'next/navigation';
 import { shimmer } from '@/lib/utils';
+import type { Metadata } from 'next';
 import GameDetails from '@/components/store/GameDetails';
 import AddToCartButton from '@/components/store/AddToCartButton';
 import BackButton from '@/components/store/BackButton';
 import Carousel from '@/components/common/Carousel';
 import Image from 'next/image';
+
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+    const { id } = await params;
+
+    const response = await getGame(id);
+
+    if (response.status === 'success') {
+        const game = response.data.game;
+
+        return {
+            title: `GameHub - ${game.title}`,
+            description: `${game.description.substring(0, 151)}...`
+        };
+    }
+
+    return {};
+}
 
 export default async function Game({
     params

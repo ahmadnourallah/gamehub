@@ -1,7 +1,21 @@
 import { getGenreGames } from '@/actions/genre';
 import { notFound } from 'next/navigation';
 import { convertParamToNum, paginate } from '@/lib/utils';
+import type { Metadata } from 'next';
 import GameList from '@/components/store/GameList';
+
+export async function generateMetadata({
+    params
+}: {
+    params: Promise<{ name: string }>;
+}): Promise<Metadata> {
+    const { name } = await params;
+
+    return {
+        title: `GameHub - ${name}`,
+        description: `Check out all the latest games in ${name}...`
+    };
+}
 
 export default async function GenreGames({
     params,

@@ -3,10 +3,18 @@ import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
 import { mdiStore } from '@mdi/js';
 import { redirect } from 'next/navigation';
+import type { Metadata } from 'next';
 import SignOutButton from '@/components/common/SignOutButton';
 import DashNavbar from '@/components/dashboard/DashNavbar';
 import VerticalDivider from '@/components/common/VerticalDivider';
 import IconButton from '@/components/common/IconButton';
+
+export const metadata: Metadata = {
+    robots: {
+        index: false,
+        follow: false
+    }
+};
 
 export default async function DashboardLayout({
     children
