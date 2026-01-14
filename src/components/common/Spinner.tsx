@@ -1,5 +1,4 @@
 'use client';
-import { motion } from 'motion/react';
 
 function Spinner({
     size,
@@ -11,10 +10,8 @@ function Spinner({
     spinnerColor?: string;
 }) {
     return (
-        <motion.div
-            className="relative grid place-content-center rounded-full"
-            animate={{ rotate: ['0deg', '360deg'] }}
-            transition={{ repeat: Infinity, duration: 0.8 }}
+        <div
+            className="relative grid animate-spin place-content-center rounded-full"
             style={{
                 width: size,
                 height: size,
@@ -33,7 +30,7 @@ function Spinner({
                         'inset(0 12.857% 77% 12.857% round 0 0 5.714% 5.714%)'
                 }}
             ></div>
-        </motion.div>
+        </div>
     );
 }
 
