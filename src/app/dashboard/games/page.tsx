@@ -5,7 +5,6 @@ import { MRT_ColumnDef } from 'mantine-react-table';
 import Button from '@/components/common/Button';
 import DashTable from '@/components/dashboard/DashTable';
 import Link from 'next/link';
-import Loading from './loading';
 
 const columns: MRT_ColumnDef<GameType>[] = [
     {
@@ -25,21 +24,20 @@ const columns: MRT_ColumnDef<GameType>[] = [
 
 export default function DashGames() {
     return (
-        // <>
-        //     <div className="mb-4 flex items-center justify-between">
-        //         <h1>Games</h1>
-        //         <Link href="/dashboard/games/new">
-        //             <Button>New</Button>
-        //         </Link>
-        //     </div>
-        //     <DashTable
-        //         addActions={true}
-        //         dataKey="games"
-        //         onDelete={deleteGame}
-        //         queryFn={getGames}
-        //         columns={columns}
-        //     />
-        // </>
-        <Loading />
+        <>
+            <div className="mb-4 flex items-center justify-between">
+                <h1>Games</h1>
+                <Link href="/dashboard/games/new">
+                    <Button>New</Button>
+                </Link>
+            </div>
+            <DashTable
+                addActions={true}
+                dataKey="games"
+                onDelete={deleteGame}
+                queryFn={getGames}
+                columns={columns}
+            />
+        </>
     );
 }
